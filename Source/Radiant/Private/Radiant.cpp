@@ -4,3 +4,5 @@
 #include "Modules/ModuleManager.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, Radiant, "Radiant" );
+
+DEFINE_LOG_CATEGORY(Radiant);
