@@ -30,6 +30,7 @@ public:
 	class UBoxComponent* collision;
 
 	// OverlapBegin 충돌 이벤트 발생 시 호출할 함수  ->  자식 클래스에서 오버라이딩해서 사용하기
+	UFUNCTION()
 	virtual void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	// # 속성
