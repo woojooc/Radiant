@@ -13,5 +13,33 @@ UCLASS()
 class RADIANT_API ARadiantGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	ARadiantGameModeBase();
+
+	virtual void BeginPlay() override;
+
+	virtual void InitGameState() override;
+
+	virtual void Tick(float DeltaSeconds) override;
+
+
+	// # Component
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UGameStateController* gameStateController;
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UWidgetController* widgetController;
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UStageInfo* stageInfoCompo;
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class USetTower* setTowerCompo;
+
+
+	// # 속성
+
+
+	// # 기능
 };
