@@ -20,10 +20,13 @@ void UGameStateController::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+
+	GetWorld()->GetFirstPlayerController()->bShowMouseCursor = true;
+
 	
 }
 
-
+ 
 // Called every frame
 void UGameStateController::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {

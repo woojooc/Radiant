@@ -23,6 +23,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// # Component
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UStaticMeshComponent* bodyMesh;
 
 	// # ¼Ó¼º
 	// Å¸°Ù

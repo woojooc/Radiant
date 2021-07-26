@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "Components/ActorComponent.h"
 #include "SetTower.generated.h"
 
@@ -24,5 +24,22 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
+	// # Factory
+	UPROPERTY(EditDefaultsOnly, Category = "TowerFactory")
+	TSubclassOf<class ATower> towerBasicFactory;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TowerFactory")
+	TSubclassOf<class ATower> towerLaserFactory;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TowerFactory")
+	TSubclassOf<class ATower> towerSlowFactory;
+
+	// # 컴포넌트 소유 액터 객체
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
+
+	// # 타워 생성
+	void SpawnTower(FVector loc);
 		
 };

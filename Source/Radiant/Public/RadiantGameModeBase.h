@@ -37,9 +37,31 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class USetTower* setTowerCompo;
 
-
+	
 	// # 속성
-
+	UPROPERTY(VisibleAnywhere,Category = "Setting")
+	bool canSelect = false;
+	UPROPERTY(VisibleAnywhere, Category = "Setting")
+	int selectedIdx = 0;
 
 	// # 기능
+	bool CanSelect()
+	{
+		return canSelect;
+	}
+
+	void Select(bool b)
+	{
+		canSelect = b;
+	}
+
+	void SetSelectedIdx(int value)
+	{
+		selectedIdx = value;
+	}
+
+	int GetSelectedIdx()
+	{
+		return selectedIdx;
+	}
 };

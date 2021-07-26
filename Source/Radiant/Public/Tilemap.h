@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "GameFramework/Actor.h"
 #include "Tilemap.generated.h"
 
@@ -23,5 +23,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere, Category = "Root", BlueprintReadWrite)
+	class UBoxComponent* root;
 
+	// 12, 20
+	UPROPERTY(EditAnywhere, Category = "Tile", BlueprintReadWrite)
+	TArray<UStaticMeshComponent*> tile;
+	int tilleWidth;
+	int tileHeight;
+
+	// Click 이벤트 발생 -> Spawn Tower 전달
+	UFUNCTION()
+	void OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+
+	// gamemodebase cache
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
 };

@@ -26,4 +26,11 @@ public:
 
 	// OverlapBegin 충돌 이벤트 발생 시 호출할 함수  ->  부모 클래스 함수 재정의
 	virtual void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
+
+	// # Component
+
+	UPROPERTY(VisibleAnywhere, Category = "BodyMesh")
+	class UStaticMeshComponent* bodyMesh;
+
+
 };
