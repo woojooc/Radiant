@@ -39,18 +39,24 @@ public:
 
 	
 	// # 加己
+
+	//		# 鸥况 积己
 	UPROPERTY(VisibleAnywhere,Category = "Setting")
 	bool canSelect = false;
 	UPROPERTY(VisibleAnywhere, Category = "Setting")
 	int selectedIdx = 0;
 
+	//		# 
+
 	// # 扁瓷
-	bool CanSelect()
+
+	//		# 鸥况 积己
+	bool CanTileSelect()
 	{
 		return canSelect;
 	}
 
-	void Select(bool b)
+	void SetTileSelect(bool b)
 	{
 		canSelect = b;
 	}
@@ -64,4 +70,6 @@ public:
 	{
 		return selectedIdx;
 	}
+
+	//		#
 };

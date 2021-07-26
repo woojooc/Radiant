@@ -58,7 +58,7 @@ void UUI_Tower::OnBtnClicked()
 
 
 	// Tilemap 클릭 이벤트 활성화, idx 전달
-	gameModeBase->Select(true);
+	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(2);
 
 	APlayerController* myController = GetWorld()->GetFirstPlayerController();
@@ -76,7 +76,7 @@ void UUI_Tower::OnBtnClicked()
 
 void UUI_Tower::OnBtn00Clicked()
 {
-	gameModeBase->Select(true);
+	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(0);
 
 	APlayerController* myController = GetWorld()->GetFirstPlayerController();
@@ -84,7 +84,7 @@ void UUI_Tower::OnBtn00Clicked()
 }
 void UUI_Tower::OnBtn01Clicked()
 {
-	gameModeBase->Select(true);
+	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(1);
 
 	APlayerController* myController = GetWorld()->GetFirstPlayerController();
@@ -92,7 +92,7 @@ void UUI_Tower::OnBtn01Clicked()
 }
 void UUI_Tower::OnBtn02Clicked()
 {
-	gameModeBase->Select(true);
+	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(2);
 
 	APlayerController* myController = GetWorld()->GetFirstPlayerController();
