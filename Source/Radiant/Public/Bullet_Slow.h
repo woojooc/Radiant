@@ -32,5 +32,13 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "BodyMesh")
 	class UStaticMeshComponent* bodyMesh;
 
+	// # 속성
+	FVector dir;
+	float speed = 200;
 
+	// # 기능
+	void SetDirection(FVector d)
+	{
+		dir = d;
+	}
 };

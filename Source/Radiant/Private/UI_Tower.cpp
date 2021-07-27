@@ -61,9 +61,6 @@ void UUI_Tower::OnBtnClicked()
 	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(2);
 
-	APlayerController* myController = GetWorld()->GetFirstPlayerController();
-	myController->bEnableClickEvents = true;
-
 	// SpawnTower 함수 호출
 	/*
 	if (gameModeBase)
@@ -78,23 +75,14 @@ void UUI_Tower::OnBtn00Clicked()
 {
 	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(0);
-
-	APlayerController* myController = GetWorld()->GetFirstPlayerController();
-	myController->bEnableClickEvents = true;
 }
 void UUI_Tower::OnBtn01Clicked()
 {
 	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(1);
-
-	APlayerController* myController = GetWorld()->GetFirstPlayerController();
-	myController->bEnableClickEvents = true;
 }
 void UUI_Tower::OnBtn02Clicked()
 {
 	gameModeBase->SetTileSelect(true);
 	gameModeBase->SetSelectedIdx(2);
-
-	APlayerController* myController = GetWorld()->GetFirstPlayerController();
-	myController->bEnableClickEvents = true;
 }

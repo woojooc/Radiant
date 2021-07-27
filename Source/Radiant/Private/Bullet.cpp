@@ -12,6 +12,7 @@ ABullet::ABullet()
 	collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	RootComponent = collision;
 	
+	collision->SetCollisionProfileName(TEXT("Bullet"));
 	collision->OnComponentBeginOverlap.AddDynamic(this, &ABullet::OnBeginOverlap);
 }
 

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "Tower.h"
 #include "Tower_Slow.generated.h"
 
@@ -24,15 +24,35 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// # Component
+	UPROPERTY(VisibleAnywhere, Category = "Collision")
+	class USphereComponent* collision;
+	
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class UStaticMeshComponent* bodyMesh;
 
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
+
 	// # 속성
 	// 타겟
-	
-	// 총알 공장
-	UPROPERTY(EditDefaultsOnly, Category = "BulletFactory")
-	TSubclassOf<class ABullet> bulletFactory;
+	UPROPERTY()
+	class AEnemy* target;
+
+	bool bTargeting = false;	// 타겟팅 중 - 더이상 타겟을 찾지 않는다.
+
+	float reloadTime = 5;		// 장전 대기 시간
+
+	// 재사용
+	float curTime = 0;
 
 
+	// # 기능
+	void Fire(FVector dir);				// 공격
+
+	// # 이벤트 함수
+
+	UFUNCTION()
+	void OnRangeOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	UFUNCTION()
+	void OnRangeOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };

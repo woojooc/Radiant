@@ -37,6 +37,8 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class USetTower* setTowerCompo;
 
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UObjectPool* objectPool;
 	
 	// # ¼Ó¼º
 
@@ -56,10 +58,7 @@ public:
 		return canSelect;
 	}
 
-	void SetTileSelect(bool b)
-	{
-		canSelect = b;
-	}
+	void SetTileSelect(bool b);
 
 	void SetSelectedIdx(int value)
 	{

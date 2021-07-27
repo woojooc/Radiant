@@ -6,6 +6,7 @@
 #include "WidgetController.h"
 #include "SetTower.h"
 #include "StageInfo.h"
+#include "ObjectPool.h"
 
 ARadiantGameModeBase::ARadiantGameModeBase()
 {
@@ -16,7 +17,7 @@ ARadiantGameModeBase::ARadiantGameModeBase()
 	widgetController = CreateDefaultSubobject<UWidgetController>(TEXT("WidgetController"));
 	stageInfoCompo = CreateDefaultSubobject<UStageInfo>(TEXT("StageInfo"));
 	setTowerCompo = CreateDefaultSubobject<USetTower>(TEXT("SetTower"));
-
+	objectPool = CreateDefaultSubobject<UObjectPool>(TEXT("ObjectPool"));
 
 }
 
@@ -33,4 +34,11 @@ void ARadiantGameModeBase::InitGameState()
 void ARadiantGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+}
+
+void ARadiantGameModeBase::SetTileSelect(bool b)
+{
+	APlayerController* myController = GetWorld()->GetFirstPlayerController();
+	myController->bEnableClickEvents = b;
+	canSelect = b;
 }

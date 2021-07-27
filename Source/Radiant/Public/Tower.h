@@ -28,7 +28,8 @@ protected:
 	// 타워 번호 0 기본, 1 레이저, 2 슬로우
 	int idx;
 
-	// 사거리	
+	// 사거리
+	UPROPERTY(EditAnywhere, Category = "Setting")
 	float range;
 
 public:

@@ -50,6 +50,8 @@ void ABullet_Slow::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// 이동함수 구현
+	FVector p = GetActorLocation() + dir * speed * DeltaTime;
+	SetActorLocation(p);
 }
 
 void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -59,6 +61,8 @@ void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	// 충돌대상 에너미인지 확인
 	// 에너미가 맞다면 
 	// 에너미 에너지 - damage
+
+	// 오브젝트 풀로 돌아간다.
 
 }
 

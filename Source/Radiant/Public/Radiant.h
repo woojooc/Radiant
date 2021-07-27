@@ -9,4 +9,12 @@ DECLARE_LOG_CATEGORY_EXTERN(Radiant, Log, All);
 
 #define APPINFO (FString(__FUNCTION__) + TEXT("(") + FString::FromInt(__LINE__) + TEXT(")"))
 #define CALLINFO() UE_LOG(Radiant, Warning, TEXT("%s"), *APPINFO);
-#define PRINTLOG(fmt, ... ) UE_LOG(Radiant, Warning, TEXT("%s %s"), *APPINFO, *FString::Printf(fmt, ##__VA_ARGS__))
+#define PRINTLOG(fmt, ... ) UE_LOG(Radiant, Warning, TEXT("%s %s"), *APPINFO, *FString::Printf(fmt, ##__VA_ARGS__)) 
+
+UENUM(BlueprintType)
+enum class ETowerType : uint8
+{
+	Basic,
+	Laser,
+	Slow
+};
