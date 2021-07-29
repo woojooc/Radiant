@@ -28,7 +28,7 @@ void UObjectPool::BeginPlay()
 
 			if (bullet)
 			{
-				AddBullet(bullet, ETowerType::Slow);
+				AddBullet(bullet);
 			}
 		}
 	}
@@ -52,8 +52,10 @@ void UObjectPool::SetBulletActive(ABullet* bullet, bool isActive)
 }
 
 // 탄창에 총알을 추가해주는 함수
-void UObjectPool::AddBullet(ABullet* bullet, ETowerType type)
+void UObjectPool::AddBullet(ABullet* bullet)
 {
+	auto type = bullet->GetType();
+
 	if (type == ETowerType::Basic)
 	{
 
@@ -116,7 +118,7 @@ ABullet* UObjectPool::CreateBullet(ETowerType type)
 
 		if (bullet)
 		{
-			AddBullet(bullet,ETowerType::Slow);
+			AddBullet(bullet);
 		}
 	}
 	return nullptr;

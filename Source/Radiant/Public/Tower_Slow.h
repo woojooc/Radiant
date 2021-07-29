@@ -40,14 +40,14 @@ public:
 
 	bool bTargeting = false;	// 타겟팅 중 - 더이상 타겟을 찾지 않는다.
 
-	float reloadTime = 5;		// 장전 대기 시간
+	float reloadTime = 1;		// 장전 대기 시간
 
 	// 재사용
 	float curTime = 0;
 
 
 	// # 기능
-	void Fire(FVector dir);				// 공격
+	void Fire();				// 공격
 
 	// # 이벤트 함수
 

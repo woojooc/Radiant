@@ -2,8 +2,11 @@
 
 
 #include "Bullet_Slow.h"
-#include <Components/BoxComponent.h>
+#include <Components/SphereComponent.h>
 #include <Components/StaticMeshComponent.h>
+#include "Enemy.h"
+#include "RadiantGameModeBase.h"
+#include "ObjectPool.h"
 
 // Sets default values
 ABullet_Slow::ABullet_Slow()
@@ -13,6 +16,7 @@ ABullet_Slow::ABullet_Slow()
 
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
 	bodyMesh->SetupAttachment(collision);
+	bodyMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	//StaticMesh'/Engine/BasicShapes/Sphere.Sphere'
 	// StaticMesh 데이터 동적으로 로드해서 할당하기
@@ -35,13 +39,13 @@ ABullet_Slow::ABullet_Slow()
 
 	bodyMesh->SetRelativeScale3D(FVector(0.2, 0.2, 0.2));
 
+	towerType = ETowerType::Slow;
 }
 
 // Called when the game starts or when spawned
 void ABullet_Slow::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
@@ -51,10 +55,22 @@ void ABullet_Slow::Tick(float DeltaTime)
 
 	// 이동함수 구현
 	FVector p = GetActorLocation() + dir * speed * DeltaTime;
-	SetActorLocation(p);
+	SetActorLocation(p,true);
 }
 
 void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	
+	auto enemy = Cast<AEnemy>(OtherActor);
+
+	if (enemy)
+	{
+		//슬로우 처리
+		gameModeBase->objectPool->AddBullet(this);
+	}
+}
+
+void  ABullet_Slow::OnBulletHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// 에너미와 충돌 처리
 	
@@ -63,6 +79,13 @@ void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	// 에너미 에너지 - damage
 
 	// 오브젝트 풀로 돌아간다.
+	/*
+	auto enemy = Cast<AEnemy>(OtherActor);
 
+	if (enemy)
+	{
+		//슬로우 처리
+		gameModeBase->objectPool->AddBullet(this);
+	}
+	*/
 }
-

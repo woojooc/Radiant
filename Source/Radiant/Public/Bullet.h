@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "GameFramework/Actor.h"
 #include "Bullet.generated.h"
 
@@ -27,15 +27,27 @@ public:
 	// # 충돌 관련
 	// 충돌체 BoxComponent
 	UPROPERTY(VisibleAnywhere, Category = "Collision")
-	class UBoxComponent* collision;
+	class USphereComponent* collision;
 
 	// OverlapBegin 충돌 이벤트 발생 시 호출할 함수  ->  자식 클래스에서 오버라이딩해서 사용하기
 	UFUNCTION()
 	virtual void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	// Hitevent 발생시
+	UFUNCTION()
+	virtual void OnBulletHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
 	// # 속성
 	// 데미지
 	int damage;
 
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
+
+	ETowerType towerType;
+	ETowerType GetType()
+	{
+		return towerType;
+	}
 	
 };

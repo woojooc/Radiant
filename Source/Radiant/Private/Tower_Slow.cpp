@@ -24,6 +24,24 @@ ATower_Slow::ATower_Slow()
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
 	// mesh cube
 	// material
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh> TempMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+	// 애셋을 성공적으로 로드 했다면 true 를 리턴
+	if (TempMesh.Succeeded())
+	{
+		// 읽어들인 데이터를 할당
+		bodyMesh->SetStaticMesh(TempMesh.Object);
+	}
+
+	// 재질 로드하기
+	ConstructorHelpers::FObjectFinder<UMaterial> TempMat(TEXT("Material'/Engine/EditorMaterials/WidgetMaterial_Y.WidgetMaterial_Y'"));
+	// 애셋을 성공적으로 로드 했다면 true 를 리턴
+	if (TempMat.Succeeded())
+	{
+		// 읽어들인 데이터를 할당
+		bodyMesh->SetMaterial(0, TempMat.Object);
+	}
+
 	bodyMesh->SetRelativeScale3D(FVector(0.7, 0.7, 0.7));
 	bodyMesh->SetupAttachment(collision);
 
@@ -50,7 +68,7 @@ void ATower_Slow::Tick(float DeltaTime)
 
 		if (curTime > reloadTime)
 		{
-			Fire(target->GetActorLocation());
+			Fire();
 			curTime = 0;
 		}
 	}
@@ -66,9 +84,9 @@ void ATower_Slow::OnRangeOverlapBegin(UPrimitiveComponent* OverlappedComponent, 
 		auto enemy = Cast<AEnemy>(OtherActor);
 		if (enemy)
 		{
-			PRINTLOG(TEXT("BeginOverlap_target"));
+			//PRINTLOG(TEXT("BeginOverlap_target"));
 			target = enemy;
-			Fire(target->GetActorLocation());
+			Fire();
 			bTargeting = true;
 		}
 	}
@@ -76,28 +94,42 @@ void ATower_Slow::OnRangeOverlapBegin(UPrimitiveComponent* OverlappedComponent, 
 
 void ATower_Slow::OnRangeOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	PRINTLOG(TEXT("EndOverlap"));
-
-	//Reset Target
-	target = nullptr;
-	bTargeting = false;
+	if (OtherActor == target)
+	{
+		//PRINTLOG(TEXT("EndOverlap"));
+		//Reset Target
+		target = nullptr;
+		bTargeting = false;
+	}
 }
 
-void ATower_Slow::Fire(FVector dir)
+void ATower_Slow::Fire()
 {
-	PRINTLOG(TEXT("Fire"));
+	//PRINTLOG(TEXT("Fire"));
 	if (gameModeBase)
 	{
-		auto bullet = Cast<ABullet_Slow>(gameModeBase->objectPool->GetBullet(ETowerType::Slow));
+		ABullet_Slow* bullet = Cast<ABullet_Slow>(gameModeBase->objectPool->GetBullet(ETowerType::Slow));
 	
 		if (bullet == nullptr)
 		{
 			return;
 		}
 
+		// 생성 위치 설정
 		bullet->SetActorLocation(GetActorLocation());
 
-		// TODO dir = target-me normaloze
-		bullet->SetDirection(target->GetActorLocation());
+		FVector dir = FVector::ZeroVector;
+		if (target)
+		{
+			dir = target->GetActorLocation() - GetActorLocation();
+			dir.Normalize();
+		}
+		else
+		{
+			dir = GetActorForwardVector();
+		}
+
+		// 방향 설정
+		bullet->SetDirection(dir);
 	}
 }

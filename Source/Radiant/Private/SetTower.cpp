@@ -36,7 +36,7 @@ void USetTower::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 void USetTower::SpawnTower(FVector loc)
 {
-	PRINTLOG(TEXT("SPAWN TOWER"));
+	//PRINTLOG(TEXT("SPAWN TOWER"));
 	FRotator rot = FRotator::ZeroRotator;
 	/*
 
@@ -89,11 +89,19 @@ void USetTower::SpawnTower(FVector loc)
 	FActorSpawnParameters Param;
 	Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	if (gameModeBase->GetSelectedIdx() == 2)
+	if (gameModeBase->GetSelectedIdx() == int(ETowerType::Basic))
+	{
+
+	}
+	else if (gameModeBase->GetSelectedIdx() == int(ETowerType::Laser))
+	{
+
+	}
+	else if (gameModeBase->GetSelectedIdx() == int(ETowerType::Slow))
 	{
 		if (towerSlowFactory)
 		{
-			auto tower = GetWorld()->SpawnActor<ATower_Slow>(towerSlowFactory, loc + FVector(0, 0, 70), rot, Param);
+			ATower_Slow* tower = GetWorld()->SpawnActor<ATower_Slow>(towerSlowFactory, loc + FVector(0, 0, 70), rot, Param);
 		}
 	}
 
