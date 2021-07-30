@@ -37,8 +37,10 @@ ABullet_Slow::ABullet_Slow()
 		bodyMesh->SetMaterial(0, TempMat.Object);
 	}
 
+	// 사이즈 조정
 	bodyMesh->SetRelativeScale3D(FVector(0.2, 0.2, 0.2));
 
+	// 타입 설정
 	towerType = ETowerType::Slow;
 }
 
@@ -65,7 +67,9 @@ void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 
 	if (enemy)
 	{
-		//슬로우 처리
+		// TODO 슬로우 처리
+
+		// 총알 회수
 		gameModeBase->objectPool->AddBullet(this);
 	}
 }

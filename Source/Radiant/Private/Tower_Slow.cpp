@@ -14,17 +14,20 @@ ATower_Slow::ATower_Slow()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//사거리 설정
 	range = 100;
 
 	collision = CreateDefaultSubobject<USphereComponent>(TEXT("Range"));
+	
+	// 사거리 충돌체 지름 = 사거리(100)*2 + 타워사이즈(70) 
 	collision->SetSphereRadius(270);
 	collision->SetCollisionProfileName("TowerRange");
 	RootComponent = collision;
 
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
+	
 	// mesh cube
 	// material
-
 	ConstructorHelpers::FObjectFinder<UStaticMesh> TempMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 	// 애셋을 성공적으로 로드 했다면 true 를 리턴
 	if (TempMesh.Succeeded())
@@ -45,6 +48,7 @@ ATower_Slow::ATower_Slow()
 	bodyMesh->SetRelativeScale3D(FVector(0.7, 0.7, 0.7));
 	bodyMesh->SetupAttachment(collision);
 
+	//충돌 이벤트 추가
 	collision->OnComponentBeginOverlap.AddDynamic(this, &ATower_Slow::OnRangeOverlapBegin);
 	collision->OnComponentEndOverlap.AddDynamic(this, &ATower_Slow::OnRangeOverlapEnd);
 }
@@ -62,10 +66,12 @@ void ATower_Slow::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	// 타겟팅 중이면 공격한다.
 	if (bTargeting == true)
 	{
 		curTime += DeltaTime;
 
+		// 공격 대기시간
 		if (curTime > reloadTime)
 		{
 			Fire();
@@ -86,7 +92,7 @@ void ATower_Slow::OnRangeOverlapBegin(UPrimitiveComponent* OverlappedComponent, 
 		{
 			//PRINTLOG(TEXT("BeginOverlap_target"));
 			target = enemy;
-			Fire();
+			curTime = reloadTime;
 			bTargeting = true;
 		}
 	}
