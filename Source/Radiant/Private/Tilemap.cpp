@@ -77,11 +77,11 @@ void ATilemap::Tick(float DeltaTime)
 void ATilemap::OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	// 위치 전달
-	PRINTLOG(TEXT("Tile Clicked %s"),*GetName());
+	//PRINTLOG(TEXT("Tile Clicked %s"),*GetName());
 
 	if (gameModeBase->CanTileSelect() == true)
 	{
-		PRINTLOG(TEXT("gameModeBase"));
+		//PRINTLOG(TEXT("gameModeBase"));
 		gameModeBase->setTowerCompo->SpawnTower(TouchedComponent->GetComponentLocation());
 	}
 

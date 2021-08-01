@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "Components/ActorComponent.h"
 #include "WidgetController.generated.h"
 
@@ -26,8 +26,8 @@ public:
 
 public:
 
-	void OpenUI();
-	void CloseUI();
+	void OpenUI(EGameState state);
+	void CloseUI(EGameState state);
 
 	void UpdateUI();
 
@@ -47,7 +47,7 @@ private:
 	TSubclassOf<class UUserWidget> towerUIFactory;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", meta = (AllowPrivateAccess = true))
-	TSubclassOf<class UUserWidget> playingUIFactory;
+	TSubclassOf<class UUI_Playing> playingUIFactory;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", meta = (AllowPrivateAccess = true))
 	TSubclassOf<class UUserWidget> gameoverUIFactory;
@@ -64,7 +64,7 @@ public:
 	class UUserWidget* towerUI;
 
 	UPROPERTY()
-	class UUserWidget* playingUI;
+	class UUI_Playing* playingUI;
 
 	UPROPERTY()
 	class UUserWidget* gameoverUI;

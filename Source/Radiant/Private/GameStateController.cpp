@@ -2,6 +2,9 @@
 
 
 #include "GameStateController.h"
+#include "WidgetController.h"
+#include "RadiantGameModeBase.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values for this component's properties
 UGameStateController::UGameStateController()
@@ -23,7 +26,7 @@ void UGameStateController::BeginPlay()
 
 	GetWorld()->GetFirstPlayerController()->bShowMouseCursor = true;
 
-	
+	gameModeBase = Cast<ARadiantGameModeBase>(GetOwner());
 }
 
  
@@ -35,3 +38,29 @@ void UGameStateController::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
+void UGameStateController::SetState(EGameState state)
+{
+	m_state = state;
+
+	if (gameModeBase)
+	{
+		gameModeBase->widgetController->CloseUI(m_state);
+		gameModeBase->widgetController->OpenUI(m_state);
+	}
+
+	if (m_state == EGameState::Intro)
+	{
+		//pause
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+	}
+	else if (m_state == EGameState::Build)
+	{
+		//pause
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+	}
+	else if (m_state == EGameState::Playing)
+	{
+		//게임 실행
+		UGameplayStatics::SetGamePaused(GetWorld(), false);
+	}
+}

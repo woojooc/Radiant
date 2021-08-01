@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "Components/ActorComponent.h"
 #include "GameStateController.generated.h"
 
@@ -24,5 +24,15 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+	// # 컴포넌트 소유 액터 객체
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
+
+	EGameState m_state;
+
+	EGameState GetState()
+	{
+		return m_state;
+	}
+	void SetState(EGameState state);
 };

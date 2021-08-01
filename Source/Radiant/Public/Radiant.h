@@ -18,3 +18,13 @@ enum class ETowerType : uint8
 	Laser,
 	Slow
 };
+
+UENUM(BlueprintType)
+enum class EGameState : uint8
+{
+	Intro,
+	Build,
+	Tower,
+	Playing,
+	Gameover
+};

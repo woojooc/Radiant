@@ -11,7 +11,7 @@ UObjectPool::UObjectPool()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
 
-	bulletSlowPoolSize = 5;
+	bulletSlowPoolSize = 20;
 }
 
 
