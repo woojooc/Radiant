@@ -27,6 +27,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void OnTriggerEnter(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	
+	void GetDamaged(int damage);
+
+	void Slowed();
 
 	// Box Collision
 	UPROPERTY(VisibleAnywhere, Category = "Collision")
@@ -43,4 +47,9 @@ public:
 	// EnemyMove ÄÄÆ÷³ÍÆ®
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
 	class UEnemyMove* enemyMove;
+
+	UPROPERTY(VisibleAnywhere, Category = Hp)
+	float enemyHp = 100;
+
+
 };
