@@ -78,6 +78,7 @@ void UWidgetController::OpenUI(EGameState state)
 
 		if (playingUI && playingUI->IsInViewport() == false)
 		{
+			playingUI->SetBtnActive(false);
 			playingUI->AddToViewport();
 		}
 	}
@@ -86,6 +87,11 @@ void UWidgetController::OpenUI(EGameState state)
 		if (towerUI && towerUI->IsInViewport() == false)
 		{
 			towerUI->AddToViewport();
+		}
+
+		if (playingUI)
+		{
+			playingUI->SetBtnActive(true);
 		}
 	}
 	else if (state == EGameState::Playing)

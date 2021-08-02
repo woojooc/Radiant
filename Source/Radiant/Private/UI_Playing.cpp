@@ -39,6 +39,19 @@ void UUI_Playing::Start()
 	}
 }
 
+void  UUI_Playing::SetBtnActive(bool active)
+{
+	Btn_Start->SetIsEnabled(active);
+	if (active)
+	{
+		Btn_Start->SetVisibility(ESlateVisibility::Visible);
+	}
+	else
+	{
+		Btn_Start->SetVisibility(ESlateVisibility::Collapsed);
+	}
+}
+
 void UUI_Playing::PrintPoint(int point)
 {
 	if (txt_point)

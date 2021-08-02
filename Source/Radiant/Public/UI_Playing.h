@@ -37,6 +37,8 @@ public:
 		class UTextBlock* txt_start;
 
 
+	void SetBtnActive(bool active);
+
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* txt_point;
