@@ -67,8 +67,8 @@ void ABullet_Slow::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 
 	if (enemy)
 	{
-		// TODO 슬로우 처리
-
+		
+		enemy->Slowed();
 		// 총알 회수
 		gameModeBase->objectPool->AddBullet(this);
 	}

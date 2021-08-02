@@ -20,7 +20,7 @@ ATower_Slow::ATower_Slow()
 	collision = CreateDefaultSubobject<USphereComponent>(TEXT("Range"));
 	
 	// 사거리 충돌체 지름 = 사거리(100)*2 + 타워사이즈(70) 
-	collision->SetSphereRadius(270);
+	collision->SetSphereRadius(2*range + 70);
 	collision->SetCollisionProfileName("TowerRange");
 	RootComponent = collision;
 

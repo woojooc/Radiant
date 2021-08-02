@@ -53,6 +53,9 @@ ATilemap::ATilemap()
 			temp->OnClicked.AddDynamic(this, &ATilemap::OnSelected);
 			temp->SetCollisionProfileName(TEXT("Tile"));
 
+			//temp->SetVisibility(false);
+			temp->SetHiddenInGame(true);
+
 			tile.Add(temp);
 		}
 	}
