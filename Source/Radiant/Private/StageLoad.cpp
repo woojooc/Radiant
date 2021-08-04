@@ -35,7 +35,8 @@ void UStageLoad::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 bool UStageLoad::ReadFile()
 {
-	FString path = FPaths::EngineContentDir() + TEXT("WJung/stage/stage00.txt");
+	//FString path = FPaths::EngineContentDir() + TEXT("WJung/stage/stage00.txt");
+	FString path = FPaths::ProjectContentDir() + TEXT("WJung/stage/stage00.txt");
 
 	TArray<FString> lines;
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
