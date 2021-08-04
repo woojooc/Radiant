@@ -14,6 +14,10 @@ void UUI_Build::NativeConstruct()
 	{
 		Btn_Done->OnClicked.AddDynamic(this, &UUI_Build::OnDoneClicked);
 	}
+
+	//PRINTLOG(TEXT("UI_Build Begin"));
+
+	gameModeBase->SetTileSelect(true);
 }
 
 void UUI_Build::OnDoneClicked()

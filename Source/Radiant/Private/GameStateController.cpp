@@ -4,6 +4,8 @@
 #include "GameStateController.h"
 #include "WidgetController.h"
 #include "RadiantGameModeBase.h"
+#include "ObjectPool.h"
+#include "StageLoad.h"
 #include <Kismet/GameplayStatics.h>
 
 // Sets default values for this component's properties
@@ -57,6 +59,15 @@ void UGameStateController::SetState(EGameState state)
 	{
 		//pause
 		UGameplayStatics::SetGamePaused(GetWorld(), true);
+
+		// 맵 스폰
+		if (gameModeBase->stageloadCompo->StageLoadSucced())
+		{
+			gameModeBase->objectPool->GenerateStage(gameModeBase->stageloadCompo->GetLocations());
+		}
+
+		// 에너미 매니저 스폰
+
 	}
 	else if (m_state == EGameState::Playing)
 	{

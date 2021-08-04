@@ -6,7 +6,6 @@
 
 void UUI_Tower::NativeConstruct()
 {
-
 	for (int i = 0; i < 3; i++)
 	{
 		//이건 왜 TEXT가 이상하게 입력되는거지?
@@ -29,60 +28,40 @@ void UUI_Tower::NativeConstruct()
 			{
 				btn->OnClicked.AddDynamic(this, &UUI_Tower::OnBtn02Clicked);
 			}
-
-			//btn->OnClicked.AddDynamic(this, &UUI_Tower::OnBtnClicked);//,true,i);
 			btnArr.Add(btn);
 		}
 	}
 
-	/*
-	if (btnArr.Num() > 0)
-	{
-		for (int i = 0; i < btnArr.Num(); i++)
-		{
-			btnArr[i]->OnClicked.AddDynamic(this, &UUI_Tower::OnBtnClicked);
-		}
-	}
-	//*/
-
 	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
+	gameModeBase->SetTileSelect(false);
+
 }
 
 void UUI_Tower::OnBtnClicked()
 {
-	PRINTLOG(TEXT("BtnClicked"));
-	//auto name = GetName();
-	//PRINTLOG(TEXT("%s"), *name);
-
 	// 설치 가능한 지형 표시 활성화
 
 
 	// Tilemap 클릭 이벤트 활성화, idx 전달
-	gameModeBase->SetTileSelect(true);
+	gameModeBase->SetWallSelect(true);
 	gameModeBase->SetSelectedIdx(2);
-
-	// SpawnTower 함수 호출
-	/*
-	if (gameModeBase)
-	{
-		PRINTLOG(TEXT("gameModeBase"));
-		gameModeBase->setTowerCompo->SpawnTower(2);
-	}
-	*/
 }
 
 void UUI_Tower::OnBtn00Clicked()
 {
-	gameModeBase->SetTileSelect(true);
+	// 설치 가능한 지형 표시 활성화
+	gameModeBase->SetWallSelect(true);
 	gameModeBase->SetSelectedIdx(0);
 }
 void UUI_Tower::OnBtn01Clicked()
 {
-	gameModeBase->SetTileSelect(true);
+	// 설치 가능한 지형 표시 활성화
+	gameModeBase->SetWallSelect(true);
 	gameModeBase->SetSelectedIdx(1);
 }
 void UUI_Tower::OnBtn02Clicked()
 {
-	gameModeBase->SetTileSelect(true);
+	// 설치 가능한 지형 표시 활성화
+	gameModeBase->SetWallSelect(true);
 	gameModeBase->SetSelectedIdx(2);
 }

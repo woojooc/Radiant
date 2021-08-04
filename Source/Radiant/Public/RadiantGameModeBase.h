@@ -32,30 +32,32 @@ public:
 	class UWidgetController* widgetController;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
-	class UStageInfo* stageInfoCompo;
-
-	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class USetTower* setTowerCompo;
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class UObjectPool* objectPool;
 	
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UStageLoad* stageloadCompo;
+
 	// # 加己
 
 	//		# 鸥况 积己
-	UPROPERTY(VisibleAnywhere,Category = "Setting")
-	bool canSelect = false;
-	UPROPERTY(VisibleAnywhere, Category = "Setting")
+	UPROPERTY(VisibleAnywhere,Category = "Generate")
+	bool canTileSelect = false;
+	UPROPERTY(VisibleAnywhere, Category = "Generate")
 	int selectedIdx = 0;
 
-	//		# 
+	//		# 寒 积己
+	UPROPERTY(VisibleAnywhere, Category = "Generate")
+	bool canWallSelect = false;
 
 	// # 扁瓷
 
 	//		# 鸥况 积己
 	bool CanTileSelect()
 	{
-		return canSelect;
+		return canTileSelect;
 	}
 
 	void SetTileSelect(bool b);
@@ -70,5 +72,11 @@ public:
 		return selectedIdx;
 	}
 
-	//		#
+	//		# 寒 积己
+	bool CanWallSelect()
+	{
+		return canWallSelect;
+	}
+
+	void SetWallSelect(bool b);
 };

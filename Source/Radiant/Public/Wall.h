@@ -37,5 +37,6 @@ public:
 	// gamemodebase cache
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
-
+	 
+	
 };

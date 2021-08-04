@@ -6,6 +6,7 @@
 #include <Components/StaticMeshComponent.h>
 #include <Materials/Material.h>
 #include "RadiantGameModeBase.h"
+#include "ObjectPool.h"
 #include "SetTower.h"
 
 // Sets default values
@@ -59,7 +60,9 @@ ATilemap::ATilemap()
 			tile.Add(temp);
 		}
 	}
-			//root->OnClicked.AddDynamic(this, &ATilemap::OnSelected);
+
+	//root->SetHiddenInGame(true);
+	//root->OnClicked.AddDynamic(this, &ATilemap::OnSelected);
 }
 
 // Called when the game starts or when spawned
@@ -79,13 +82,13 @@ void ATilemap::Tick(float DeltaTime)
 
 void ATilemap::OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	// 위치 전달
-	//PRINTLOG(TEXT("Tile Clicked %s"),*GetName());
-
+	// TODO  Wall 설치
 	if (gameModeBase->CanTileSelect() == true)
 	{
 		//PRINTLOG(TEXT("gameModeBase"));
-		gameModeBase->setTowerCompo->SpawnTower(TouchedComponent->GetComponentLocation());
+		gameModeBase->objectPool->SpawnWall(TouchedComponent->GetComponentLocation());
 	}
+
+	// 설치 가능한 wall 수 -1
 
 }

@@ -5,7 +5,7 @@
 #include "GameStateController.h"
 #include "WidgetController.h"
 #include "SetTower.h"
-#include "StageInfo.h"
+#include "StageLoad.h"
 #include "ObjectPool.h"
 
 ARadiantGameModeBase::ARadiantGameModeBase()
@@ -13,12 +13,11 @@ ARadiantGameModeBase::ARadiantGameModeBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// # Component »ý¼º
+	stageloadCompo = CreateDefaultSubobject<UStageLoad>(TEXT("StageLoad"));
 	gameStateController = CreateDefaultSubobject<UGameStateController>(TEXT("GameStateController"));
 	widgetController = CreateDefaultSubobject<UWidgetController>(TEXT("WidgetController"));
-	stageInfoCompo = CreateDefaultSubobject<UStageInfo>(TEXT("StageInfo"));
 	setTowerCompo = CreateDefaultSubobject<USetTower>(TEXT("SetTower"));
 	objectPool = CreateDefaultSubobject<UObjectPool>(TEXT("ObjectPool"));
-
 }
 
 void ARadiantGameModeBase::BeginPlay()
@@ -38,7 +37,18 @@ void ARadiantGameModeBase::Tick(float DeltaSeconds)
 
 void ARadiantGameModeBase::SetTileSelect(bool b)
 {
+	//PRINTLOG(TEXT("SetTileSelect : %s"), b);
+
 	APlayerController* myController = GetWorld()->GetFirstPlayerController();
 	myController->bEnableClickEvents = b;
-	canSelect = b;
+	canTileSelect = b;
+}
+
+void ARadiantGameModeBase::SetWallSelect(bool b)
+{
+	//PRINTLOG(TEXT("SetWallSelect : %s"), b);
+
+	APlayerController* myController = GetWorld()->GetFirstPlayerController();
+	myController->bEnableClickEvents = b;
+	canWallSelect = b;
 }

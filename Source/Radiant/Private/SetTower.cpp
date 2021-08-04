@@ -109,5 +109,5 @@ void USetTower::SpawnTower(FVector loc)
 		}
 	}
 
-	gameModeBase->SetTileSelect(false);
+	gameModeBase->SetWallSelect(false);
 }

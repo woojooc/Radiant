@@ -2,6 +2,7 @@
 
 
 #include "ObjectPool.h"
+#include "RadiantGameModeBase.h"
 
 
 // Sets default values for this component's properties
@@ -19,6 +20,8 @@ UObjectPool::UObjectPool()
 void UObjectPool::BeginPlay()
 {
 	Super::BeginPlay();
+
+	gameModeBase = Cast<ARadiantGameModeBase>(GetOwner());
 
 	if (bulletSlowFactory)
 	{
@@ -122,4 +125,53 @@ ABullet* UObjectPool::CreateBullet(ETowerType type)
 		}
 	}
 	return nullptr;
+}
+
+
+void UObjectPool::SpawnWall(FVector loc)
+{
+	//PRINTLOG(TEXT("SpawnWALL"));
+
+	FRotator rot = FRotator::ZeroRotator;
+
+	FActorSpawnParameters Param;
+	Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	if(wallFactory)
+	{
+		auto wall = GetWorld()->SpawnActor<AWall>(wallFactory, loc + FVector(0, 0, 70), rot, Param);
+	}
+
+	//TODO 설치 가능한 타일 수 0인 경우에
+	//gameModeBase->SetTileSelect(false);
+}
+
+void UObjectPool::GenerateStage(TArray<FVector> locations)
+{
+	SpawnTilemap();
+
+	for (int i = 0; i < locations.Num(); i++)
+	{
+		FActorSpawnParameters Param;
+		Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+		FRotator rot = FRotator::ZeroRotator;
+
+		if (wallFactory)
+		{
+			auto wall = GetWorld()->SpawnActor<AWall>(wallFactory, locations[i], rot, Param);
+		}
+	}
+}
+
+void UObjectPool::SpawnTilemap()
+{
+	FActorSpawnParameters Param;
+	Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	if (tilemapFactory)
+	{
+		auto tilemap = GetWorld()->SpawnActor<ATilemap>(tilemapFactory, tileLoc, tileRot, Param);
+	}
+
 }

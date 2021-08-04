@@ -25,7 +25,7 @@ AWall::AWall()
 	// StaticMesh 데이터 동적으로 로드해서 할당하기
 	ConstructorHelpers::FObjectFinder<UStaticMesh> TempMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 	// 재질 로드하기
-	ConstructorHelpers::FObjectFinder<UMaterial> TempMat(TEXT("Material'/Engine/EditorMaterials/Camera/CineMat.CineMat'"));
+	ConstructorHelpers::FObjectFinder<UMaterial> TempMat(TEXT("Material'/Game/WJung/Resources/Mat/Metal_textures_pack/pattern_09/Mat_pt9.Mat_pt9'"));
 
 	bodyMesh->SetupAttachment(root);
 
@@ -67,5 +67,12 @@ void AWall::Tick(float DeltaTime)
 
 void AWall::OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
+	// 타워 생성
+	if (gameModeBase->CanWallSelect() == true)
+	{
+		//PRINTLOG(TEXT("gameModeBase"));
+		gameModeBase->setTowerCompo->SpawnTower(TouchedComponent->GetComponentLocation());
+	}
 
+	// 돈 -
 }
