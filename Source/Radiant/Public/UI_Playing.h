@@ -33,8 +33,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Start();
 
+	// Playing ui 리소스 가져오기
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-		class UTextBlock* txt_start;
+	class UImage* img_playing;
+	//UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	//	class UTextBlock* txt_start;
 
 
 	void SetBtnActive(bool active);

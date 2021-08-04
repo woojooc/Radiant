@@ -3,6 +3,7 @@
 
 #include "UI_Playing.h"
 #include <Components/TextBlock.h>
+#include <Components/Image.h>
 #include "RadiantGameModeBase.h"
 #include "GameStateController.h"
 
@@ -31,17 +32,24 @@ void UUI_Playing::Start()
 	{
 		gameModeBase->gameStateController->SetState(EGameState::Playing);
 
-		if (txt_start)
+		// start UI 이미지 Visible 
+		img_playing->SetVisibility(ESlateVisibility::Visible);
+
+		// 버튼 Disabled 상태로 만들기
+		SetBtnActive(false);
+
+		/*if (txt_start)
 		{
 			FString str = FString::Printf(TEXT(">>"));
 			txt_start->SetText(FText::FromString(str));
-		}
+		}*/
 	}
 }
 
 void  UUI_Playing::SetBtnActive(bool active)
 {
 	Btn_Start->SetIsEnabled(active);
+
 	if (active)
 	{
 		Btn_Start->SetVisibility(ESlateVisibility::Visible);
