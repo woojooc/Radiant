@@ -32,6 +32,8 @@ public:
 
 	void Slowed();
 
+	void GetDamaged_Laser(int damage);
+
 	// Box Collision
 	UPROPERTY(VisibleAnywhere, Category = "Collision")
 	class UBoxComponent* collision;

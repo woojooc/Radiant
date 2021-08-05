@@ -55,11 +55,11 @@ void AEnemy::OnTriggerEnter(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 
 void AEnemy::GetDamaged(int damage)
 {
-	enemyHp -= damage;
-	if (enemyHp <= 0)
-	{
-		Destroy();
-	}
+//	enemyHp -= damage;
+// 	if (enemyHp <= 0)
+// 	{
+// 		Destroy();
+// 	}
 }
 
 void AEnemy::Slowed()
@@ -71,6 +71,19 @@ void AEnemy::Slowed()
 	else
 	{
 		enemyMove->speed -= 50;
+	}
+}
+
+// 
+void AEnemy::GetDamaged_Laser(int damage)
+{
+	
+	
+	enemyHp -= damage;
+	
+	if (enemyHp <= 0)
+	{
+		Destroy();
 	}
 }
 

@@ -8,6 +8,7 @@
 #include "Wall.h"
 #include "Tilemap.h"
 #include "Components/ActorComponent.h"
+#include "Bullet_Laser.h"
 #include "ObjectPool.generated.h"
 
 
@@ -83,7 +84,17 @@ public:
 
 
 	//			# BULLET_LASER
-	
+	UPROPERTY(EditDefaultsOnly, Category = "BulletLaser", meta = (AllowPrivateAccess = true))
+		int bulletLaserPoolSize;
+
+	UPROPERTY(VisibleAnywhere, Category = "BulletLaser", meta = (AllowPrivateAccess = true))
+		TArray<ABullet_Laser*> bulletLaserPool;
+
+	//				공장
+	UPROPERTY(EditDefaultsOnly, Category = "BulletLaser", meta = (AllowPrivateAccess = true))
+		TSubclassOf<class ABullet_Laser> bulletLaserFactory;
+
+
 
 	//			# BULLET_SLOW
 	//				필요속성 : 탄창크기, 탄창(오브젝트풀), 총알공장

@@ -3,6 +3,7 @@
 
 #include "ObjectPool.h"
 #include "RadiantGameModeBase.h"
+#include "Bullet_Laser.h"
 
 
 // Sets default values for this component's properties
@@ -35,7 +36,19 @@ void UObjectPool::BeginPlay()
 			}
 		}
 	}
-	
+
+	if (bulletSlowFactory)
+	{
+		for (int i = 0; i < bulletSlowPoolSize; i++)
+		{
+			ABullet* bullet = Cast<ABullet>(CreateBullet(ETowerType::Laser));
+
+			if (bullet)
+			{
+				AddBullet(bullet);
+			}
+		}
+	}
 }
 
 
@@ -65,7 +78,7 @@ void UObjectPool::AddBullet(ABullet* bullet)
 	}
 	else if (type == ETowerType::Laser)
 	{
-
+		bulletLaserPool.AddUnique(Cast<ABullet_Laser>(bullet));
 	}
 	else if (type == ETowerType::Slow)
 	{
@@ -85,7 +98,13 @@ ABullet* UObjectPool::GetBullet(ETowerType type)
 	}
 	else if (type == ETowerType::Laser)
 	{
-
+		if (bulletLaserPool.Num() < 1)
+		{
+			return nullptr;
+		}
+		ABullet* bullet = bulletLaserPool.Pop();
+		SetBulletActive(bullet, true);
+		return bullet;
 	}
 	else if (type == ETowerType::Slow)
 	{
@@ -109,7 +128,16 @@ ABullet* UObjectPool::CreateBullet(ETowerType type)
 	}
 	else if (type == ETowerType::Laser)
 	{
+		// 1. 총알공장에서 총알을 만든다.
+		FActorSpawnParameters Param;
+		Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
+		auto bullet = GetWorld()->SpawnActor<ABullet_Laser>(bulletLaserFactory, FVector::ZeroVector, FRotator::ZeroRotator, Param);
+
+		if (bullet)
+		{
+			AddBullet(bullet);
+		}
 	}
 	else if (type == ETowerType::Slow)
 	{
