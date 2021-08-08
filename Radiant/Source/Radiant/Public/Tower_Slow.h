@@ -30,6 +30,13 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class UStaticMeshComponent* bodyMesh;
 
+	UPROPERTY(EditAnywhere, Category = "Component")
+	class USkeletalMeshComponent* base;
+	UPROPERTY(EditAnywhere, Category = "Component")
+	class UStaticMeshComponent* head;
+	UPROPERTY(EditAnywhere, Category = "Component")
+	class UArrowComponent* firePosition;
+
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
 
@@ -46,8 +53,16 @@ public:
 	float curTime = 0;
 
 
+	FRotator idleRot;
+	bool setIdleRot = false;
+
+	float idleRotDelayTime = 1;
+	bool idleRotDelay = false;
+
 	// # 기능
 	void Fire();				// 공격
+	void RotToTarget();			// 타겟 방향으로 회전
+	bool IdleRotation();		// 대기상태 회전
 
 	// # 이벤트 함수
 

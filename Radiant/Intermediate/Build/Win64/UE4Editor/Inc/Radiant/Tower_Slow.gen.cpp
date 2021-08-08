@@ -22,6 +22,8 @@ void EmptyLinkFunctionForGeneratedCodeTower_Slow() {}
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UArrowComponent_NoRegister();
 	RADIANT_API UClass* Z_Construct_UClass_ARadiantGameModeBase_NoRegister();
 	RADIANT_API UClass* Z_Construct_UClass_AEnemy_NoRegister();
 // End Cross Module References
@@ -221,6 +223,18 @@ void EmptyLinkFunctionForGeneratedCodeTower_Slow() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_bodyMesh;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_base_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_base;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_head_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_head;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_firePosition_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_firePosition;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_gameModeBase_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_gameModeBase;
@@ -265,6 +279,30 @@ void EmptyLinkFunctionForGeneratedCodeTower_Slow() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATower_Slow_Statics::NewProp_bodyMesh = { "bodyMesh", nullptr, (EPropertyFlags)0x00100000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATower_Slow, bodyMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATower_Slow_Statics::NewProp_bodyMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATower_Slow_Statics::NewProp_bodyMesh_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATower_Slow_Statics::NewProp_base_MetaData[] = {
+		{ "Category", "Component" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Tower_Slow.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATower_Slow_Statics::NewProp_base = { "base", nullptr, (EPropertyFlags)0x0010000000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATower_Slow, base), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATower_Slow_Statics::NewProp_base_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATower_Slow_Statics::NewProp_base_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATower_Slow_Statics::NewProp_head_MetaData[] = {
+		{ "Category", "Component" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Tower_Slow.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATower_Slow_Statics::NewProp_head = { "head", nullptr, (EPropertyFlags)0x0010000000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATower_Slow, head), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATower_Slow_Statics::NewProp_head_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATower_Slow_Statics::NewProp_head_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATower_Slow_Statics::NewProp_firePosition_MetaData[] = {
+		{ "Category", "Component" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Tower_Slow.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATower_Slow_Statics::NewProp_firePosition = { "firePosition", nullptr, (EPropertyFlags)0x0010000000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATower_Slow, firePosition), Z_Construct_UClass_UArrowComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATower_Slow_Statics::NewProp_firePosition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATower_Slow_Statics::NewProp_firePosition_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATower_Slow_Statics::NewProp_gameModeBase_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Tower_Slow.h" },
 	};
@@ -281,6 +319,9 @@ void EmptyLinkFunctionForGeneratedCodeTower_Slow() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATower_Slow_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_collision,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_bodyMesh,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_base,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_head,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_firePosition,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_gameModeBase,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATower_Slow_Statics::NewProp_target,
 	};
@@ -311,7 +352,7 @@ void EmptyLinkFunctionForGeneratedCodeTower_Slow() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATower_Slow, 2826852846);
+	IMPLEMENT_CLASS(ATower_Slow, 2791869103);
 	template<> RADIANT_API UClass* StaticClass<ATower_Slow>()
 	{
 		return ATower_Slow::StaticClass();
