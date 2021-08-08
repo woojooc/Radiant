@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Radiant",
+			"Path": "G:\\XRMR\\0809clone\\Radiant\\Source\\Radiant.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "RadiantEditor",
+			"Path": "G:\\XRMR\\0809clone\\Radiant\\Source\\RadiantEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

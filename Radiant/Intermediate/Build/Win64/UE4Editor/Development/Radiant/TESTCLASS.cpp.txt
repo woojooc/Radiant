@@ -1,0 +1,3 @@
+G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Development\Radiant\Definitions.Radiant.h
+G:\XRMR\0809clone\Radiant\Source\Radiant\Public\TESTCLASS.h
+G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\TESTCLASS.generated.h

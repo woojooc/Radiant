@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Radiant.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{EDA0E9B8-5E2D-421C-8B12-8FB544424F96}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Radiant.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\RadiantEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{8A476C6F-7AB9-4BA5-933A-98550F087938}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Radiant">
+      <UniqueIdentifier>{85D8C950-B7A0-42A9-B7F3-FA024B214641}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Radiant\Radiant.Build.cs">
+      <Filter>Source\Radiant</Filter>
+    </None>
+    <Filter Include="Source\Radiant\Private">
+      <UniqueIdentifier>{1362C963-0CB9-46A0-8275-01D30D8E0986}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Radiant\Private\Bullet.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Bullet_Basic.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Bullet_Laser.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Bullet_Slow.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\DestroyZone.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Enemy.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\EnemyGoal.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\EnemyManager.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\EnemyMove.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\GameStateController.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\ObjectPool.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Radiant.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\RadiantGameModeBase.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\SetTower.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\StageLoad.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\TESTCLASS.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Tilemap.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Tower.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Tower_Basic.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Tower_Laser.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Tower_Slow.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\UI_Build.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\UI_Gameover.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\UI_Intro.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\UI_Playing.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\UI_Tower.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\Wall.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Radiant\Private\WidgetController.cpp">
+      <Filter>Source\Radiant\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\Radiant\Public">
+      <UniqueIdentifier>{AAE3FD43-C4AD-4583-B84F-B2039ECD79EC}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Radiant\Public\Bullet.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Bullet_Basic.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Bullet_Laser.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Bullet_Slow.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\DestroyZone.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Enemy.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\EnemyGoal.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\EnemyManager.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\EnemyMove.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\GameStateController.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\ObjectPool.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Radiant.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\RadiantGameModeBase.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\SetTower.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\StageLoad.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\TESTCLASS.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Tilemap.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Tower.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Tower_Basic.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Tower_Laser.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Tower_Slow.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\UI_Build.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\UI_Gameover.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\UI_Intro.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\UI_Playing.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\UI_Tower.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\Wall.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Radiant\Public\WidgetController.h">
+      <Filter>Source\Radiant\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
