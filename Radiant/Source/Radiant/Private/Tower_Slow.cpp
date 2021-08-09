@@ -207,7 +207,7 @@ void ATower_Slow::Tick(float DeltaTime)
 		TArray<int> rot = { 20, -20, 30, -30, 15, -15,50,-50,90,-90 };
 
 		int index = FMath::RandRange(0, 9);
-		PRINTLOG(TEXT("%s %d"),*GetName(),index);
+		//PRINTLOG(TEXT("%s %d"),*GetName(),index);
 		idleRot = GetActorRotation() + FRotator(0,rot[index],0);
 		
 		setIdleRot = true;

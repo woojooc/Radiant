@@ -1,6 +1,0 @@
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Development\Radiant\Definitions.Radiant.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Bullet_Basic.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Bullet.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Radiant.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\Bullet.generated.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\Bullet_Basic.generated.h

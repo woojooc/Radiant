@@ -32,7 +32,7 @@ public:
 	float speed = 200;
 
 	// 컴포넌트를 소유하고 있는 액터
-	class AEnemy* me;
+	class AActor* me;
 
 	// Target
 	UPROPERTY(VisibleAnywhere, Category = "Target")

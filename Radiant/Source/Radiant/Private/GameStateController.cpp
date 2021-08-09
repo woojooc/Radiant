@@ -29,6 +29,7 @@ void UGameStateController::BeginPlay()
 	GetWorld()->GetFirstPlayerController()->bShowMouseCursor = true;
 
 	gameModeBase = Cast<ARadiantGameModeBase>(GetOwner());
+
 }
 
  
@@ -53,12 +54,12 @@ void UGameStateController::SetState(EGameState state)
 	if (m_state == EGameState::Intro)
 	{
 		//pause
-		UGameplayStatics::SetGamePaused(GetWorld(), true);
+		//UGameplayStatics::SetGamePaused(GetWorld(), true);
 	}
 	else if (m_state == EGameState::Build)
 	{
 		//pause
-		UGameplayStatics::SetGamePaused(GetWorld(), true);
+		//UGameplayStatics::SetGamePaused(GetWorld(), true);
 
 		// ¸Ê ½ºÆù
 		if (gameModeBase->stageloadCompo->StageLoadSucced())

@@ -25,7 +25,7 @@ AWall::AWall()
 	// StaticMesh 데이터 동적으로 로드해서 할당하기
 	ConstructorHelpers::FObjectFinder<UStaticMesh> TempMesh(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
 	// 재질 로드하기
-	ConstructorHelpers::FObjectFinder<UMaterial> TempMat(TEXT("Material'/Game/WJung/Resources/Mat/Metal_textures_pack/pattern_09/Mat_pt9.Mat_pt9'"));
+	ConstructorHelpers::FObjectFinder<UMaterial> TempMat(TEXT("Material'/Game/WJung/Resources/Mat/Metal_textures_pack/pattern_23/Mat_pt23.Mat_pt23'"));
 
 	bodyMesh->SetupAttachment(root);
 

@@ -3,6 +3,9 @@
 
 #include "EnemyManager.h"
 #include "Enemy.h"
+#include "RadiantGameModeBase.h"
+#include "GameStateController.h"
+#include "EnemyIMG.h"
 
 // Sets default values
 AEnemyManager::AEnemyManager()
@@ -16,6 +19,8 @@ AEnemyManager::AEnemyManager()
 void AEnemyManager::BeginPlay()
 {
 	Super::BeginPlay();
+
+	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
 	
 }
 // Called every frame
@@ -23,22 +28,35 @@ void AEnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// 일정시간에 한번씩 적을 만들고 싶다.
-	// 1. 시간이 흘렀으니까
-	currentTime += DeltaTime;
-	// 2. 일정시간이 됐으니
-   //-> 만약 경과시간이 생성시간을 초과하였다면
-   
-	if (currentTime > createTime)
+	if (gameModeBase->gameStateController->GetState() == EGameState::Build)
 	{
-		// 3. 적을 만들고 싶다.(Spawn)
-		auto enemy = GetWorld()->SpawnActor<AEnemy>(enemyFactory, GetTransform());
-		
-		
-		
-		currentTime = 0;
-	}
+		currentTime += DeltaTime;
 
+		if (currentTime > createTime)
+		{
+			auto enemy = GetWorld()->SpawnActor<AEnemyIMG>(enemyIMGFactory, GetTransform());
+
+			currentTime = 0;
+		}
+	}
+	else if (gameModeBase->gameStateController->GetState() == EGameState::Playing)
+	{
+		// 일정시간에 한번씩 적을 만들고 싶다.
+		// 1. 시간이 흘렀으니까
+		currentTime += DeltaTime;
+		// 2. 일정시간이 됐으니
+	   //-> 만약 경과시간이 생성시간을 초과하였다면
+   
+		if (currentTime > createTime)
+		{
+			// 3. 적을 만들고 싶다.(Spawn)
+			auto enemy = GetWorld()->SpawnActor<AEnemy>(enemyFactory, GetTransform());
+		
+		
+		
+			currentTime = 0;
+		}
+	}
 }
 	
 

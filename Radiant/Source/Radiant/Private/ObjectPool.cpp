@@ -108,6 +108,7 @@ ABullet* UObjectPool::GetBullet(ETowerType type)
 	}
 	else if (type == ETowerType::Slow)
 	{
+		//PRINTLOG(TEXT("%d"), bulletSlowPool.Num());
 		if (bulletSlowPool.Num() < 1)
 		{
 			return nullptr;

@@ -1,5 +1,0 @@
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Development\Radiant\Definitions.Radiant.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\EnemyManager.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\EnemyManager.generated.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Enemy.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\Enemy.generated.h

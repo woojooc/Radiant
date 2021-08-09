@@ -2,7 +2,6 @@
 
 
 #include "EnemyMove.h"
-#include "Enemy.h"
 #include <Kismet/GameplayStatics.h>
 #include "EnemyGoal.h"
 
@@ -22,7 +21,7 @@ void UEnemyMove::BeginPlay()
 {
 	Super::BeginPlay();
 
-	me = Cast<AEnemy>(GetOwner());
+	me = GetOwner();
 	
 	// target Ã£±â
 	target = UGameplayStatics::GetActorOfClass(GetWorld(), AEnemyGoal::StaticClass());

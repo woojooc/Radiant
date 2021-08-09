@@ -1,5 +1,0 @@
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Development\Radiant\Definitions.Radiant.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Tower_Basic.h
-G:\XRMR\0809clone\Radiant\Source\Radiant\Public\Tower.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\Tower.generated.h
-G:\XRMR\0809clone\Radiant\Intermediate\Build\Win64\UE4Editor\Inc\Radiant\Tower_Basic.generated.h

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Radiant.h"
 #include "GameFramework/Actor.h"
 #include "EnemyManager.generated.h"
 
@@ -28,7 +28,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
+	UPROPERTY()
+	class ARadiantGameModeBase* gameModeBase;
 	
 	//필요속성 : 적공장, 생성시간, 경과시간 
 	UPROPERTY(EditDefaultsOnly, Category = "Enemy Factory")
@@ -39,5 +40,9 @@ public:
 
 	UPROPERTY()
 	float currentTime = 0;
-	
+
+
+	UPROPERTY(EditDefaultsOnly, Category = "EnemyIMG Factory")
+	TSubclassOf<class AEnemyIMG> enemyIMGFactory;
+
 };
