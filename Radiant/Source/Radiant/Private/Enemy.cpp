@@ -3,11 +3,13 @@
 
 #include "Enemy.h"
 #include <Components/BoxComponent.h>
+#include <Components/CapsuleComponent.h>
 #include "EnemyMove.h"
 #include "Bullet.h"
 #include "Bullet_Laser.h"
 #include "Bullet_Slow.h"
 #include "RadiantGameModeBase.h"
+#include <GameFramework/CharacterMovementComponent.h>
 
 // Sets default values
 AEnemy::AEnemy()
@@ -16,7 +18,7 @@ AEnemy::AEnemy()
 	PrimaryActorTick.bCanEverTick = true;
 
 	collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
-	RootComponent = collision;
+	collision->SetupAttachment(GetCapsuleComponent());
 	collision->SetCollisionProfileName(TEXT("OverlapAll"));
 
 	bodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
@@ -24,6 +26,8 @@ AEnemy::AEnemy()
 	bodyMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	enemyMove = CreateDefaultSubobject<UEnemyMove>(TEXT("EnemyMove"));
+	
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 }
 
@@ -74,13 +78,13 @@ void AEnemy::Slowed()
 	}
 }
 
-// 
 void AEnemy::GetDamaged_Laser(int damage)
 {
-	
-	
+	PRINTLOG(TEXT("%d"), enemyHp);
+
 	enemyHp -= damage;
 	
+	PRINTLOG(TEXT("%d"), enemyHp);
 	if (enemyHp <= 0)
 	{
 		Destroy();

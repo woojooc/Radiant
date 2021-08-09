@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "Radiant.h"
+#include <GameFramework/Character.h>
 #include "Enemy.generated.h"
 
 UCLASS()
-class RADIANT_API AEnemy : public APawn
+class RADIANT_API AEnemy : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -52,6 +52,5 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = Hp)
 	float enemyHp = 100;
-
 
 };

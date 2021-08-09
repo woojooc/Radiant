@@ -36,5 +36,11 @@ public:
 
 	// Target
 	UPROPERTY(VisibleAnywhere, Category = "Target")
-	class AActor* target;
+	class AEnemyGoal* target;
+
+	// Enemy 가 사용하고 있는 AIController 기억
+	UPROPERTY()
+	class AAIController* ai;
+
+	
 };
