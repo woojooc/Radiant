@@ -41,8 +41,6 @@ public:
 	UPROPERTY()
 	float currentTime = 0;
 
-
 	UPROPERTY(EditDefaultsOnly, Category = "EnemyIMG Factory")
 	TSubclassOf<class AEnemyIMG> enemyIMGFactory;
-
 };

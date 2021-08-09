@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "GameFramework/Character.h"
 #include "EnemyIMG.generated.h"
 
 UCLASS()
-class RADIANT_API AEnemyIMG : public AActor
+class RADIANT_API AEnemyIMG : public ACharacter
 {
 	GENERATED_BODY()
 	
@@ -26,4 +26,5 @@ public:
 	// EnemyMove ÄÄÆ÷³ÍÆ®
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
 	class UEnemyMove* enemyMove;
+
 };
