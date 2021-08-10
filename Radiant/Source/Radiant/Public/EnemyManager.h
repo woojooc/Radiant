@@ -43,4 +43,5 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "EnemyIMG Factory")
 	TSubclassOf<class AEnemyIMG> enemyIMGFactory;
+
 };

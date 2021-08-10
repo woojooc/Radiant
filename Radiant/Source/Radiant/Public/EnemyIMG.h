@@ -25,6 +25,14 @@ public:
 
 	// EnemyMove ÄÄÆ÷³ÍÆ®
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
-	class UEnemyMove* enemyMove;
+		class UEnemyMove* enemyMove;
+
+
+	// EnemyMove ÄÄÆ÷³ÍÆ®
+	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
+		class UBoxComponent* box;
+
+		UPROPERTY()
+		class ARadiantGameModeBase* gameModeBase;
 
 };

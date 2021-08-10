@@ -5,6 +5,7 @@
 #include "Tower_Slow.h"
 #include "Tower_Laser.h"
 #include "RadiantGameModeBase.h"
+#include "Tower_Basic.h"
 
 // Sets default values for this component's properties
 USetTower::USetTower()
@@ -92,7 +93,10 @@ void USetTower::SpawnTower(FVector loc)
 
 	if (gameModeBase->GetSelectedIdx() == int(ETowerType::Basic))
 	{
-
+		if (towerBasicFactory)
+		{
+			ATower_Basic* tower = GetWorld()->SpawnActor<ATower_Basic>(towerBasicFactory, loc + FVector(0, 0, 70), rot, Param);
+		}
 	}
 	else if (gameModeBase->GetSelectedIdx() == int(ETowerType::Laser))
 	{
