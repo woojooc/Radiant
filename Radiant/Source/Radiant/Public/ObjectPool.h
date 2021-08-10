@@ -9,6 +9,7 @@
 #include "Tilemap.h"
 #include "Components/ActorComponent.h"
 #include "Bullet_Laser.h"
+#include "Bullet_Basic.h"
 #include "ObjectPool.generated.h"
 
 
@@ -81,6 +82,15 @@ public:
 
 	//		# 속성
 	//			# BULLET_BASIC
+	UPROPERTY(EditDefaultsOnly, Category = "BulletBasic", meta = (AllowPrivateAccess = true))
+		int bulletBaiscPoolSize;
+
+	UPROPERTY(VisibleAnywhere, Category = "BulletBasic", meta = (AllowPrivateAccess = true))
+		TArray<ABullet_Basic*> bulletBasicPool;
+
+	//				공장
+	UPROPERTY(EditDefaultsOnly, Category = "BulletBasic", meta = (AllowPrivateAccess = true))
+		TSubclassOf<class ABullet_Basic> bulletBasicFactory;
 
 
 	//			# BULLET_LASER

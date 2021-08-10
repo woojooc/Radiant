@@ -4,6 +4,7 @@
 #include "ObjectPool.h"
 #include "RadiantGameModeBase.h"
 #include "Bullet_Laser.h"
+#include "Bullet_Basic.h"
 
 
 // Sets default values for this component's properties
@@ -14,6 +15,8 @@ UObjectPool::UObjectPool()
 	PrimaryComponentTick.bCanEverTick = false;
 
 	bulletSlowPoolSize = 20;
+	bulletBaiscPoolSize = 20;
+	bulletLaserPoolSize = 20;
 }
 
 
@@ -37,11 +40,24 @@ void UObjectPool::BeginPlay()
 		}
 	}
 
-	if (bulletSlowFactory)
+	if (bulletLaserFactory)
 	{
-		for (int i = 0; i < bulletSlowPoolSize; i++)
+		for (int i = 0; i < bulletLaserPoolSize; i++)
 		{
 			ABullet* bullet = Cast<ABullet>(CreateBullet(ETowerType::Laser));
+
+			if (bullet)
+			{
+				AddBullet(bullet);
+			}
+		}
+	}
+
+	if (bulletBasicFactory)
+	{
+		for (int i = 0; i < bulletBaiscPoolSize; i++)
+		{
+			ABullet* bullet = Cast<ABullet>(CreateBullet(ETowerType::Basic));
 
 			if (bullet)
 			{
@@ -74,6 +90,7 @@ void UObjectPool::AddBullet(ABullet* bullet)
 
 	if (type == ETowerType::Basic)
 	{
+		bulletBasicPool.AddUnique(Cast<ABullet_Basic>(bullet));
 
 	}
 	else if (type == ETowerType::Laser)
@@ -94,8 +111,17 @@ ABullet* UObjectPool::GetBullet(ETowerType type)
 {
 	if (type == ETowerType::Basic)
 	{
+		if (bulletBasicPool.Num() < 1)
 
+		{
+		    return nullptr;
+	
+		}
+	    ABullet* bullet = bulletBasicPool.Pop();
+		SetBulletActive(bullet, true);
+		return bullet;
 	}
+
 	else if (type == ETowerType::Laser)
 	{
 		if (bulletLaserPool.Num() < 1)
@@ -125,7 +151,17 @@ ABullet* UObjectPool::CreateBullet(ETowerType type)
 {
 	if (type == ETowerType::Basic)
 	{
+		// 1. 총알공장에서 총알을 만든다.
+		FActorSpawnParameters Param;
+		Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
+		auto bullet = GetWorld()->SpawnActor<ABullet_Basic>(bulletBasicFactory, FVector::ZeroVector, FRotator::ZeroRotator, Param);
+
+		if (bullet)
+		{
+			AddBullet(bullet);
+		}
+		
 	}
 	else if (type == ETowerType::Laser)
 	{
