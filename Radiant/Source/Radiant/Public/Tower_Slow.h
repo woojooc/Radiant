@@ -40,6 +40,9 @@ public:
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
 
+	UPROPERTY(EditAnywhere,Category="Factory")
+	class UParticleSystem* fireEffect;
+
 	// # 속성
 	// 타겟
 	UPROPERTY()
@@ -48,11 +51,17 @@ public:
 	bool bTargeting = false;	// 타겟팅 중 - 더이상 타겟을 찾지 않는다.
 
 	float reloadTime = 1;		// 장전 대기 시간
+	
+	bool bFired = false;
+	float nuckbackTime = 0.2;
+	float relocationTime = 0.5;
+	FVector headLoc;
+	FVector headBackLoc;
 
 	// 재사용
 	float curTime = 0;
 
-
+	// 회전
 	FRotator idleRot;
 	bool setIdleRot = false;
 

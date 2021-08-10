@@ -9,6 +9,7 @@
 #include "ObjectPool.h"
 #include <Components/ArrowComponent.h>
 #include <Components/SkeletalMeshComponent.h>
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values
 ATower_Slow::ATower_Slow()
@@ -179,6 +180,8 @@ void ATower_Slow::BeginPlay()
 	double secs = FTimespan(FDateTime::Now().GetTicks()).GetTotalSeconds();
 	int32 seed = (int32)(((int64)secs) % INT_MAX);
 	FMath::RandInit(seed);
+
+	headLoc = head->GetComponentLocation();
 }
 
 // Called every frame
@@ -194,13 +197,36 @@ void ATower_Slow::Tick(float DeltaTime)
 		RotToTarget();
 
 		// 공격 대기시간
-		if (curTime > reloadTime)
+		if (bFired == false && curTime > reloadTime)
 		{
 			Fire();
 			curTime = 0;
+			bFired = true;
+		}
+		
+		if (bFired == true)
+		{
+			if (curTime < nuckbackTime)
+			{
+				// head 뒤로 이동
+				FVector myLoc = FMath::Lerp(headLoc - head->GetForwardVector()*10*(nuckbackTime-curTime),headLoc, 10*DeltaTime);
+				head->SetWorldLocation(myLoc);
+			}
+			else if (curTime < nuckbackTime + relocationTime)
+			{
+				// head 원 위치
+				FVector myLoc = FMath::Lerp(headLoc, head->GetComponentLocation(),5*DeltaTime);
+				head->SetWorldLocation(myLoc);
+			}
+			else
+			{
+				bFired = false;
+			}
 		}
 		return;
 	}
+
+
 
 	if (setIdleRot == false)
 	{
@@ -285,6 +311,12 @@ void ATower_Slow::Fire()
 
 		// 방향 설정
 		bullet->SetDirection(dir);
+
+		// 총구 이펙트 재생
+		FVector scale = FVector(0.2,0.2,0.2);
+		FRotator rot = FRotator::ZeroRotator;
+		EAttachLocation::Type type = EAttachLocation::SnapToTarget;
+		UGameplayStatics::SpawnEmitterAttached(fireEffect,firePosition,TEXT("FirePos"),firePosition->GetRelativeLocation(), rot,scale, type);
 	}
 }
 
@@ -294,19 +326,21 @@ void ATower_Slow::RotToTarget()
 
 	// 바라 보고 싶은 방향
 	FRotator targetRot = dir.ToOrientationRotator();
-	FRotator myRot = GetActorRotation();
+	FRotator myRot = head->GetComponentRotation();
 
 	myRot = FMath::Lerp(myRot, targetRot, 5 * GetWorld()->DeltaTimeSeconds);
 	// -> 부드럽게 회전하고 싶다.
-	SetActorRotation(myRot);
+	myRot.Pitch = 0;
+	myRot.Roll = 0;
+	head->SetWorldRotation(myRot);
 }
 
 bool ATower_Slow::IdleRotation()
 {
-	FRotator myRot = GetActorRotation();
+	FRotator myRot = head->GetComponentRotation();
 	myRot = FMath::Lerp(myRot, idleRot, 5 * GetWorld()->DeltaTimeSeconds);
 	// -> 부드럽게 회전하고 싶다.
-	SetActorRotation(myRot);
+	head->SetWorldRotation(myRot);
 
 	float yaw = idleRot.Euler().Z - myRot.Euler().Z;
 	

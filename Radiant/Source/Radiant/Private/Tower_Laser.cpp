@@ -7,8 +7,6 @@
 #include "RadiantGameModeBase.h"
 #include "ObjectPool.h"
 
-
-
 // Sets default values
 ATower_Laser::ATower_Laser()
 {
