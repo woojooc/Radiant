@@ -6,6 +6,7 @@
 #include <Components/CapsuleComponent.h>
 #include "EnemyMove.h"
 #include "Bullet.h"
+#include "Bullet_Basic.h"
 #include "Bullet_Laser.h"
 #include "Bullet_Slow.h"
 #include "RadiantGameModeBase.h"

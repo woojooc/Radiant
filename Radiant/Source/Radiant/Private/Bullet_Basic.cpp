@@ -42,7 +42,7 @@ void ABullet_Basic::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAc
 	if (enemy)
 	{
 
-		enemy->GetDamaged(30);
+		enemy->GetDamaged_Basic(30);
 		// ÃÑ¾Ë È¸¼ö
 		gameModeBase->objectPool->AddBullet(this);
 	}
