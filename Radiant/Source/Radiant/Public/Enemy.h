@@ -4,6 +4,7 @@
 
 #include "Radiant.h"
 #include <GameFramework/Character.h>
+#include <GameFramework/CharacterMovementComponent.h>
 #include "Enemy.generated.h"
 
 UCLASS()
@@ -34,6 +35,18 @@ public:
 
 	void GetDamaged_Laser(int damage);
 
+	void GetDamaged_Basic(int damage);
+
+	// Accessor function for enemyhp
+// 	UFUNCTION(BlueprintPure, Category = HP)
+// 	float GetenemyHp();
+// 
+// 	UFUNCTION(BlueprintPure, Category = HP)
+// 	float GetcurrentenemyHp();
+// 
+// 	UFUNCTION(BlueprintCallable, Category = HP)
+// 	void UpdatecurrentenemyHp(int damage);
+
 	// Box Collision
 	UPROPERTY(VisibleAnywhere, Category = "Collision")
 	class UBoxComponent* collision;
@@ -50,7 +63,30 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
 	class UEnemyMove* enemyMove;
 
-	UPROPERTY(VisibleAnywhere, Category = Hp)
+	UPROPERTY(EditAnywhere, Category = Hp)
 	float enemyHp = 100;
 
+
+	// EnemyhpBar
+	UPROPERTY(VisibleAnywhere, Category = HP)
+	class UWidgetComponent* HealthWidgetComp;
+
+// 	UPROPERTY(EditAnywhere, VisibleAnywhere, Category = Hp)
+// 	float currentenemyHp;
+
+	
+// slow ÇÔ¼ö character¶û ¿¬µ¿
+// 	UPROPERTY()
+// 	ACharacter* Enemy;
+
+// 	UPROPERTY()
+// 	UCharacterMovementComponent* CharacterMovement = GetCharacterMovement();
+// 
+// 	float WalkSpeed = CharacterMovement->MaxWalkSpeed;
+
+// 	UPROPERTY(EditAnywhere, Category = Speed)
+// 	class UCharacterMovementComponent* MovementPtr;
+
+// 	UPROPERTY(EditAnywhere, Category = Speed)
+// 	float speed;
 };

@@ -10,6 +10,10 @@
 #include "Bullet_Slow.h"
 #include "RadiantGameModeBase.h"
 #include <GameFramework/CharacterMovementComponent.h>
+#include <GameFramework/Character.h>
+#include <Components/WidgetComponent.h>
+#include <Engine/EngineTypes.h>
+#include "EnemyhpBar.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -29,6 +33,14 @@ AEnemy::AEnemy()
 	
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
+	HealthWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
+	HealthWidgetComp->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
+ 
+// 	UCharacterMovementComponent* MovementPtr = Cast<UCharacterMovementComponent>(Enemy->GetCharacterMovement());
+// 	MovementPtr->MaxWalkSpeed = speed;
+
+	/*CharacterMovement->MaxWalkSpeed = WalkSpeed;*/
 }
 
 // Called when the game starts or when spawned
@@ -43,6 +55,7 @@ void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	/*UpdatecurrentenemyHp();*/
 }
 
 // Called to bind functionality to input
@@ -68,14 +81,25 @@ void AEnemy::GetDamaged(int damage)
 
 void AEnemy::Slowed()
 {
-	if (enemyMove->speed <= 50)
-	{
-		return;
-	}
-	else
-	{
-		enemyMove->speed -= 50;
-	}
+	
+
+// 	if (WalkSpeed <= 50)
+// 	{
+// 		return;
+// 	}
+// 	else
+// 	{
+// 		WalkSpeed -= 50;
+// 	}
+// 
+// 	if (enemyMove->speed <= 50)
+// 	{
+// 		return;
+// 	}
+// 	else
+// 	{
+// 		enemyMove->speed -= 50;
+// 	}
 }
 
 void AEnemy::GetDamaged_Laser(int damage)
@@ -90,4 +114,32 @@ void AEnemy::GetDamaged_Laser(int damage)
 		Destroy();
 	}
 }
+
+
+void AEnemy::GetDamaged_Basic(int damage)
+{
+	enemyHp -= damage;
+
+	if (enemyHp <= 0)
+	{
+		Destroy();
+	}
+}
+
+// float AEnemy::GetenemyHp()
+// {
+// 	
+// 	return enemyHp;
+// }
+
+// float AEnemy::GetcurrentenemyHp()
+// {
+// 
+// 	return currentenemyHp;
+// }
+// 
+// void AEnemy::UpdatecurrentenemyHp(int damage)
+// {
+// 	currentenemyHp = enemyHp - damage;
+// }
 
