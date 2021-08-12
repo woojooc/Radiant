@@ -92,6 +92,7 @@ void UIntroComp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 			blackhole->SetActorHiddenInGame(false);
 			blackhole->SetActorScale3D(FVector(0.2,0.2,0.2));
 			m_state = EIntroState::BlackholeBigger;
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(basicShake);
 		break;
 		case EIntroState::BlackholeBigger:
 			// 블랙홀이 커진다
@@ -105,11 +106,8 @@ void UIntroComp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 			// 폭파
 			Boom();
 			break;
-		case EIntroState::EnemyGenerate:
-			// 에너미 생성
-			EnemyGenerate();
-			break;
 		case EIntroState::EnemyMove:
+			// 에너미 생성
 			// 에너미 길 따라 이동 && 벽 생성 && 카메라 팔로우
 			EnemyMove();
 			break;
@@ -146,6 +144,7 @@ void UIntroComp::BlackholeBigger()
 		//blackhole->SetActorScale3D(FVector(1,1,1));
 		curTime = 0;
 		m_state = EIntroState::Swirl;
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(swirlShake);
 	}
 }
 
@@ -171,6 +170,7 @@ void UIntroComp::Swirl()
 			if (boomEffectFactory)
 			{
 				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),boomEffectFactory,blackhole->GetTransform());
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(boomShake);
 			}
 		}
 	}
@@ -193,30 +193,41 @@ void UIntroComp::Boom()
 
 	if (curTime > boomTime)
 	{
-		m_state = EIntroState::EnemyGenerate;
+		//m_state = EIntroState::EnemyMove;
+		gameModeBase->gameStateController->SetState(EGameState::Build);
+		curTime = 0;
 	}
 }
 
 void UIntroComp::EnemyGenerate()
 {
-	curTime += GetWorld()->DeltaTimeSeconds;
-
-	if (curTime > enemyGenerateTime)
+	auto enemy = blackhole->SpawnEnemy();
+	GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(spawnShake);
+	if (target == nullptr)
 	{
-		if (blackhole)
-		{
-			auto enemy = blackhole->SpawnEnemy();
-			if (target == nullptr)
-			{
-				target = enemy;
-			}
-		}
+		target = enemy;
 	}
-
+	enemyCount++;
 }
 
 void UIntroComp::EnemyMove()
 {
+	// 줌 확 땡기기 +  흔들 흔들하기
+	
+	// 에너미 제너레이트  10개까지 생성
+	if (enemyCount <= 10)
+	{
+		curTime += GetWorld()->DeltaTimeSeconds;
+		if (curTime > enemyGenerateTime)
+		{
+			EnemyGenerate();
+			curTime = 0;
+		}
+	}
+
+	// 맵 생성
+	
+	// 에너미 2개 생성 시 카메라 이동
 
 }
 

@@ -37,11 +37,17 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Component")
 	class UArrowComponent* firePosition;
 
+	UPROPERTY(EditAnywhere, Category = "ParticleComponent")
+	class UParticleSystemComponent* fireParticleCompo;
+
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
 
+	// Factory
+	/*
 	UPROPERTY(EditAnywhere,Category="Factory")
 	class UParticleSystem* fireEffect;
+	*/
 
 	// # ¼Ó¼º
 	// Å¸°Ù

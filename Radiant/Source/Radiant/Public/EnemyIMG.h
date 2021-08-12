@@ -31,6 +31,8 @@ public:
 	// EnemyMove ÄÄÆ÷³ÍÆ®
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
 		class UBoxComponent* box;
+	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
+		class UMoveToPoint* moveToPoint;
 
 		UPROPERTY()
 		class ARadiantGameModeBase* gameModeBase;

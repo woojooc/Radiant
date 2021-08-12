@@ -10,6 +10,7 @@
 #include <Components/ArrowComponent.h>
 #include <Components/SkeletalMeshComponent.h>
 #include <Kismet/GameplayStatics.h>
+#include <Particles/ParticleSystemComponent.h>
 
 // Sets default values
 ATower_Slow::ATower_Slow()
@@ -38,6 +39,9 @@ ATower_Slow::ATower_Slow()
 
 	firePosition = CreateDefaultSubobject<UArrowComponent>(TEXT("FirePos"));
 	firePosition->SetupAttachment(head);
+
+	fireParticleCompo = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("FireEffect"));
+	fireParticleCompo->SetupAttachment(firePosition);
 
 #pragma region Mat, Material
 
@@ -301,7 +305,7 @@ void ATower_Slow::Fire()
 		FVector dir = FVector::ZeroVector;
 		if (target)
 		{
-			dir = target->GetActorLocation() - firePosition->GetComponentLocation();
+			dir = target->GetTargetPoint() - firePosition->GetComponentLocation();
 			dir.Normalize();
 		}
 		else
@@ -313,10 +317,13 @@ void ATower_Slow::Fire()
 		bullet->SetDirection(dir);
 
 		// ÃÑ±¸ ÀÌÆåÆ® Àç»ý
+		/*
 		FVector scale = FVector(0.2,0.2,0.2);
 		FRotator rot = FRotator::ZeroRotator;
 		EAttachLocation::Type type = EAttachLocation::SnapToTarget;
 		UGameplayStatics::SpawnEmitterAttached(fireEffect,firePosition,TEXT("FirePos"),firePosition->GetRelativeLocation(), rot,scale, type);
+		*/
+		fireParticleCompo->Activate(true);
 	}
 }
 

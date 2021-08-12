@@ -88,10 +88,15 @@ void UEnemyMove::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	// AI의 길찾기 기능을 이용해 이동
 
 
-		if (ai)
-		{
-			ai->MoveToActor(target);
-		}
+	
 
+}
+
+void UEnemyMove::Move()
+{
+	if (ai)
+	{
+		ai->MoveToActor(target);
+	}
 }
 

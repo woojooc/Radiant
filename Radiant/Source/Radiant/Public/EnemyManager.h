@@ -45,4 +45,7 @@ public:
 	TSubclassOf<class AEnemyIMG> enemyIMGFactory;
 
 	AActor* SpawnEnemy();
+
+	UPROPERTY(EditAnywhere,Category = "Path")
+	TArray<AActor*> pathActors;
 };

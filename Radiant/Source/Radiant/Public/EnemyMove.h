@@ -42,5 +42,6 @@ public:
 	UPROPERTY()
 	class AAIController* ai;
 
+	void Move();
 	
 };

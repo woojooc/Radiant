@@ -9,6 +9,7 @@
 #include <Components/BoxComponent.h>
 #include "GameStateController.h"
 #include "RadiantGameModeBase.h"
+#include "MoveToPoint.h"
 
 // Sets default values
 AEnemyIMG::AEnemyIMG()
@@ -19,6 +20,8 @@ AEnemyIMG::AEnemyIMG()
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	enemyMove = CreateDefaultSubobject<UEnemyMove>(TEXT("EnemyMove"));
+	moveToPoint = CreateDefaultSubobject<UMoveToPoint>(TEXT("MoveToPoint"));
+
 
 	GetCapsuleComponent()->SetCapsuleRadius(20);
 	GetCapsuleComponent()->SetCapsuleHalfHeight(20);
@@ -91,6 +94,15 @@ void AEnemyIMG::BeginPlay()
 void AEnemyIMG::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (gameModeBase->gameStateController->GetState() == EGameState::Intro)
+	{
+		moveToPoint->Move();
+	}
+	else
+	{
+		enemyMove->Move();
+	}
 
 	if (gameModeBase->gameStateController->GetState() == EGameState::Playing)
 	{

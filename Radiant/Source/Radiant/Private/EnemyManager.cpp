@@ -6,6 +6,7 @@
 #include "RadiantGameModeBase.h"
 #include "GameStateController.h"
 #include "EnemyIMG.h"
+#include "MoveToPoint.h"
 
 // Sets default values
 AEnemyManager::AEnemyManager()
@@ -35,6 +36,7 @@ void AEnemyManager::Tick(float DeltaTime)
 		if (currentTime > createTime)
 		{
 			auto enemy = GetWorld()->SpawnActor<AEnemyIMG>(enemyIMGFactory, GetTransform());
+			enemy->moveToPoint->SetPath(pathActors);
 
 			currentTime = 0;
 		}
@@ -45,14 +47,13 @@ void AEnemyManager::Tick(float DeltaTime)
 		// 1. 시간이 흘렀으니까
 		currentTime += DeltaTime;
 		// 2. 일정시간이 됐으니
-	   //-> 만약 경과시간이 생성시간을 초과하였다면
+	    //-> 만약 경과시간이 생성시간을 초과하였다면
    
 		if (currentTime > createTime)
 		{
 			// 3. 적을 만들고 싶다.(Spawn)
 			auto enemy = GetWorld()->SpawnActor<AEnemy>(enemyFactory, GetTransform());
-		
-		
+			enemy->moveToPoint->SetPath(pathActors);
 		
 			currentTime = 0;
 		}
@@ -62,6 +63,9 @@ void AEnemyManager::Tick(float DeltaTime)
 AActor* AEnemyManager::SpawnEnemy()
 {
 	auto enemy = GetWorld()->SpawnActor<AEnemy>(enemyFactory, GetTransform());
+	//enemy->moveToPoint->pathActors = pathActors;
+	// enemy->movetopoint->SetPath();
+	enemy->moveToPoint->SetPath(pathActors);
 	return enemy;
 }
 

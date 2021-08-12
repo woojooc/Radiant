@@ -15,6 +15,8 @@
 #include <Components/WidgetComponent.h>
 #include <Engine/EngineTypes.h>
 #include "EnemyhpBar.h"
+#include "GameStateController.h"
+#include "MoveToPoint.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -31,7 +33,9 @@ AEnemy::AEnemy()
 	bodyMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	enemyMove = CreateDefaultSubobject<UEnemyMove>(TEXT("EnemyMove"));
+	moveToPoint = CreateDefaultSubobject<UMoveToPoint>(TEXT("MoveToPoint"));
 	
+
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	HealthWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
@@ -49,6 +53,7 @@ void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
+	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
 }
 
 // Called every frame
@@ -57,6 +62,16 @@ void AEnemy::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	/*UpdatecurrentenemyHp();*/
+	if(gameModeBase->gameStateController->GetState() == EGameState::Intro)
+	{
+		//PRINTLOG(TEXT("MoveToPoint Move"));
+		moveToPoint->Move();
+	}
+	else
+	{
+		//PRINTLOG(TEXT("EnemyMove Move"));
+		enemyMove->Move();
+	}
 }
 
 // Called to bind functionality to input
@@ -125,6 +140,11 @@ void AEnemy::GetDamaged_Basic(int damage)
 	{
 		Destroy();
 	}
+}
+
+FVector AEnemy::GetTargetPoint()
+{
+	return bodyMesh->GetComponentLocation();
 }
 
 // float AEnemy::GetenemyHp()

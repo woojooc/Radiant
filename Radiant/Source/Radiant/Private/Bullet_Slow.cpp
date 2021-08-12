@@ -38,7 +38,7 @@ ABullet_Slow::ABullet_Slow()
 	}
 
 	// 사이즈 조정
-	bodyMesh->SetRelativeScale3D(FVector(0.2, 0.2, 0.2));
+	bodyMesh->SetRelativeScale3D(FVector(0.07, 0.07, 0.07));
 
 	// 타입 설정
 	towerType = ETowerType::Slow;

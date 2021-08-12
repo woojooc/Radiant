@@ -62,6 +62,12 @@ public:
 	// EnemyMove ÄÄÆ÷³ÍÆ®
 	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
 	class UEnemyMove* enemyMove;
+	UPROPERTY(VisibleAnywhere, Category = "EnemyMove")
+		class UMoveToPoint* moveToPoint;
+
+		UPROPERTY()
+		class ARadiantGameModeBase* gameModeBase;
+
 
 	UPROPERTY(EditAnywhere, Category = Hp)
 	float enemyHp = 100;
@@ -70,6 +76,9 @@ public:
 	// EnemyhpBar
 	UPROPERTY(VisibleAnywhere, Category = HP)
 	class UWidgetComponent* HealthWidgetComp;
+
+	FVector GetTargetPoint();
+
 
 // 	UPROPERTY(EditAnywhere, VisibleAnywhere, Category = Hp)
 // 	float currentenemyHp;

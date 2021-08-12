@@ -44,6 +44,16 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Effect")
 	class UParticleSystem* boomEffectFactory;
 
+	// CameraShake
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+	TSubclassOf<class UCameraShakeBase> basicShake;
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+	TSubclassOf<class UCameraShakeBase> boomShake;
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+		TSubclassOf<class UCameraShakeBase> swirlShake;
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+		TSubclassOf<class UCameraShakeBase> spawnShake;
+
 	// Actor in World
 	UPROPERTY()
 	class ACameraActor* sceneCam;
@@ -76,9 +86,11 @@ public:
 	float boomTime = 0.5;
 	float zoomoutV = 5;
 
-	float enemyGenerateTime = 0.1;
+	float enemyGenerateTime = 1.5;
 	AActor* target;
-	
+	int enemyCount = 0;
+
+
 	// State Function
 	void BlackholeBigger();
 	void Swirl();
