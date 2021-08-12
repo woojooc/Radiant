@@ -150,6 +150,8 @@ ATower_Slow::ATower_Slow()
 	partsF->SetRelativeLocation(FVector(-4,0,-35.6));
 	partsF->SetRelativeScale3D(FVector(0.35, 0.35, 0.35));
 
+
+
 	partsA->SetupAttachment(head);
 	partsB->SetupAttachment(head);
 	partsC->SetupAttachment(head);
