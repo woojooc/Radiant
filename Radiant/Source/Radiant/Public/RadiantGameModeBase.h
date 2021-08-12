@@ -82,4 +82,5 @@ public:
 	}
 
 	void SetWallSelect(bool b);
+
 };

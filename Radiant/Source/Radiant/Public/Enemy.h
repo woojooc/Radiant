@@ -79,7 +79,13 @@ public:
 
 	FVector GetTargetPoint();
 
+	UPROPERTY(EditAnywhere, Category = "Position")
+	class UStaticMeshComponent* position;
 
+	UStaticMeshComponent* GetAttachPosition()
+	{
+		return position;
+	}
 // 	UPROPERTY(EditAnywhere, VisibleAnywhere, Category = Hp)
 // 	float currentenemyHp;
 

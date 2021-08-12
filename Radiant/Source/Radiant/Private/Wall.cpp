@@ -56,6 +56,13 @@ void AWall::BeginPlay()
 	
 	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
 
+	//originalLoc = GetActorLocation();
+	SetLocOrigin();
+	
+	if (!bStatic)
+	{
+		PrimaryActorTick.bCanEverTick = !bStatic;
+	}
 }
 
 // Called every frame
@@ -63,6 +70,31 @@ void AWall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (!bStatic)
+	{
+		FVector from = GetActorLocation();
+		FVector to = from;
+		to.Z=-30;
+		FVector result = FMath::Lerp(from, to, 100*GetWorld()->DeltaTimeSeconds);
+		//SetActorLocation(GetActorLocation() + FVector(0,0,-100)*DeltaTime);
+		SetActorLocation(result);
+
+		if (GetActorLocation().Z <= -20)
+		{
+			//originalLoc.Z=-30;
+			SetActorLocation(originalLoc);
+			SetStaticWall(true);
+			bShake = false;
+			if (!isLast)
+			{
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(wallShake);
+			}
+			else
+			{
+				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->StartCameraShake(lastWallShake);
+			}
+		}
+	}
 }
 
 void AWall::OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
@@ -75,4 +107,10 @@ void AWall::OnSelected(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed
 	}
 
 	// µ· -
+}
+
+void AWall::SetLocOrigin()
+{
+	originalLoc = GetActorLocation();
+	originalLoc.Z=-30;
 }

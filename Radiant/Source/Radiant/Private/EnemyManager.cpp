@@ -29,7 +29,8 @@ void AEnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (gameModeBase->gameStateController->GetState() == EGameState::Build)
+	if (gameModeBase->gameStateController->GetState() == EGameState::Build || 
+		gameModeBase->gameStateController->GetState() == EGameState::Tower)
 	{
 		currentTime += DeltaTime;
 

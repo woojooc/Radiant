@@ -37,6 +37,32 @@ public:
 	// gamemodebase cache
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
-	 
 	
+	FVector originalLoc;
+	void SetLocOrigin();
+
+
+	//flase¸é ¶³¾îÁü.
+	bool bStatic = true;
+	void SetStaticWall(bool b)
+	{
+		bStatic = b;
+		PrimaryActorTick.bCanEverTick = !bStatic;
+	}
+	bool isStatic()
+	{
+		return bStatic;
+	}
+
+	bool bShake = true;
+	bool isShake()
+	{
+		return bShake;
+	}
+
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+		TSubclassOf<class UCameraShakeBase> wallShake;
+	UPROPERTY(EditAnywhere, Category = "CameraEffect")
+		TSubclassOf<class UCameraShakeBase> lastWallShake;
+		bool isLast = false;
 };

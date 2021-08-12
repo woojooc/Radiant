@@ -62,6 +62,8 @@ public:
 	void SpawnWall(FVector loc);
 
 	void GenerateStage(TArray<FVector> locations);
+
+	TArray<AActor*> IntroWallGenerate();
 #pragma endregion
 
 

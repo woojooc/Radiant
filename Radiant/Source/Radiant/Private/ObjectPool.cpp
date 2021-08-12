@@ -5,6 +5,7 @@
 #include "RadiantGameModeBase.h"
 #include "Bullet_Laser.h"
 #include "Bullet_Basic.h"
+#include "StageLoad.h"
 
 
 // Sets default values for this component's properties
@@ -227,6 +228,38 @@ void UObjectPool::GenerateStage(TArray<FVector> locations)
 			auto wall = GetWorld()->SpawnActor<AWall>(wallFactory, locations[i], rot, Param);
 		}
 	}
+}
+
+TArray<AActor*> UObjectPool::IntroWallGenerate()
+{
+	TArray<FVector> locations = gameModeBase->stageloadCompo->GetLocations();
+	TArray<AActor*> walls;
+
+	for (int i = 0; i < locations.Num(); i++)
+	{
+		FActorSpawnParameters Param;
+		Param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+		FRotator rot = FRotator::ZeroRotator;
+
+		if (wallFactory)
+		{
+			
+			float height = FMath::RandRange(150,500);
+			FVector randLoc = locations[i];
+			randLoc.Z = height;
+
+			auto wall = GetWorld()->SpawnActor<AWall>(wallFactory, randLoc, rot, Param);
+			if (i == locations.Num() - 1)
+			{
+				wall->isLast = true;
+			}
+
+			walls.Add(wall);
+		}
+	}
+
+	return walls;
 }
 
 void UObjectPool::SpawnTilemap()

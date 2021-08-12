@@ -44,6 +44,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Effect")
 	class UParticleSystem* boomEffectFactory;
 
+	UPROPERTY(VisibleAnywhere, Category = "WallCtrl")
+	class UWallController* wallCtrl;
+
 	// CameraShake
 	UPROPERTY(EditAnywhere, Category = "CameraEffect")
 	TSubclassOf<class UCameraShakeBase> basicShake;
@@ -54,9 +57,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "CameraEffect")
 		TSubclassOf<class UCameraShakeBase> spawnShake;
 
+
 	// Actor in World
 	UPROPERTY()
-	class ACameraActor* sceneCam;
+	class ARaCameraActor* sceneCam;
 	UPROPERTY()
 	class AActor* menu;
 	UPROPERTY()
@@ -89,6 +93,15 @@ public:
 	float enemyGenerateTime = 1.5;
 	AActor* target;
 	int enemyCount = 0;
+	TArray<AActor*> enemyArr;
+
+	float enemyMoveTimeLine = 0;
+	bool btargetCam = false;
+	bool btargetTrace = false;
+	float targetDistance = 300;
+	FVector targetOffset;
+
+	float goalTemp = 2;
 
 
 	// State Function

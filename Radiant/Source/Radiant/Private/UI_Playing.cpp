@@ -31,6 +31,7 @@ void UUI_Playing::Start()
 	if (state != EGameState::Playing)
 	{
 		gameModeBase->gameStateController->SetState(EGameState::Playing);
+		
 
 		// start UI ÀÌ¹ÌÁö Visible 
 		img_playing->SetVisibility(ESlateVisibility::Visible);

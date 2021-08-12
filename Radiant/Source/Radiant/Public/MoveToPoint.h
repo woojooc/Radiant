@@ -12,6 +12,7 @@ enum class EMoveState :uint8
 	Idle,
 	Moving,
 	Attached,
+	Turn,
 	NoWay
 };
 
@@ -56,5 +57,6 @@ public:
 	void Idle();
 	void Moving();
 	void Attached();
+	void Turn();
 	void NoWay();
 };

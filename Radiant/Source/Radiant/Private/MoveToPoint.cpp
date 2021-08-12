@@ -47,6 +47,10 @@ void UMoveToPoint::Move()
 	{
 		Attached();
 	}
+	else if (m_state == EMoveState::Turn)
+	{
+		Turn();
+	}
 	else
 	{
 		NoWay();
@@ -61,6 +65,11 @@ void UMoveToPoint::SetPath(TArray<AActor*> path)
 	{
 		pathIdx = 0;
 		toLoc = pathActors[pathIdx]->GetActorLocation();
+
+		FVector dir = toLoc - me->GetActorLocation();
+		dir.Normalize();
+
+		me->SetActorRotation(dir.ToOrientationRotator());
 	}
 }
 
@@ -106,13 +115,39 @@ void UMoveToPoint::Attached()
 	if (pathActors.Num() > pathIdx)
 	{
 		toLoc = pathActors[pathIdx]->GetActorLocation();
-		m_state = EMoveState::Moving;
 		//PRINTLOG(TEXT("Next Loc = %s"),*(pathActors[pathIdx]->GetName()));
+		
+		//m_state = EMoveState::Turn;
+		FVector dir = toLoc - me->GetActorLocation();
+		dir.Normalize();
+		me->SetActorRotation(dir.ToOrientationRotator());
+		m_state = EMoveState::Moving;
 	}
 	else
 	{
 		m_state = EMoveState::NoWay;
 	}
+}
+
+void UMoveToPoint::Turn()
+{
+/*
+	FVector dir = toLoc - me->GetActorLocation();
+	dir.Normalize();
+
+	FRotator myRot = FMath::Lerp(me->GetActorRotation(), dir.ToOrientationRotator(), 6*GetWorld()->DeltaTimeSeconds);
+	me->SetActorRotation(myRot);
+
+	if (myRot.Equals(dir.ToOrientationRotator()))
+	{
+		m_state = EMoveState::Moving;
+	}
+*/
+	FVector dir = toLoc - me->GetActorLocation();
+	dir.Normalize();
+	me->SetActorRotation(dir.ToOrientationRotator());
+	m_state = EMoveState::Moving;
+
 }
 
 void UMoveToPoint::NoWay()

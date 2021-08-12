@@ -41,7 +41,9 @@ AEnemy::AEnemy()
 	HealthWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
 	HealthWidgetComp->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
- 
+	//position = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AttachPosition"));
+	//position->SetupAttachment(GetCapsuleComponent());
+
 // 	UCharacterMovementComponent* MovementPtr = Cast<UCharacterMovementComponent>(Enemy->GetCharacterMovement());
 // 	MovementPtr->MaxWalkSpeed = speed;
 
@@ -54,6 +56,9 @@ void AEnemy::BeginPlay()
 	Super::BeginPlay();
 
 	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	position = Cast<UStaticMeshComponent>(GetDefaultSubobjectByName(TEXT("AttachPosition")));
+
 }
 
 // Called every frame
@@ -61,7 +66,10 @@ void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	moveToPoint->Move();
+
 	/*UpdatecurrentenemyHp();*/
+	/*
 	if(gameModeBase->gameStateController->GetState() == EGameState::Intro)
 	{
 		//PRINTLOG(TEXT("MoveToPoint Move"));
@@ -72,6 +80,7 @@ void AEnemy::Tick(float DeltaTime)
 		//PRINTLOG(TEXT("EnemyMove Move"));
 		enemyMove->Move();
 	}
+	*/
 }
 
 // Called to bind functionality to input

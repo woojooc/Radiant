@@ -95,6 +95,8 @@ void AEnemyIMG::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	moveToPoint->Move();
+/*
 	if (gameModeBase->gameStateController->GetState() == EGameState::Intro)
 	{
 		moveToPoint->Move();
@@ -103,6 +105,7 @@ void AEnemyIMG::Tick(float DeltaTime)
 	{
 		enemyMove->Move();
 	}
+*/
 
 	if (gameModeBase->gameStateController->GetState() == EGameState::Playing)
 	{
