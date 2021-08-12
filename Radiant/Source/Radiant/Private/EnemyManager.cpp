@@ -59,5 +59,9 @@ void AEnemyManager::Tick(float DeltaTime)
 	}
 }
 	
-
+AActor* AEnemyManager::SpawnEnemy()
+{
+	auto enemy = GetWorld()->SpawnActor<AEnemy>(enemyFactory, GetTransform());
+	return enemy;
+}
 

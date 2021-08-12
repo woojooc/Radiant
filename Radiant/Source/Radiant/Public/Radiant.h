@@ -22,6 +22,7 @@ enum class ETowerType : uint8
 UENUM(BlueprintType)
 enum class EGameState : uint8
 {
+	Menu,
 	Intro,
 	Build,
 	Tower,

@@ -23,5 +23,5 @@ void UUI_Intro::OnStartClicked()
 
 void UUI_Intro::Start()
 {
-	gameModeBase->gameStateController->SetState(EGameState::Build);
+	gameModeBase->gameStateController->SetState(EGameState::Intro);
 }

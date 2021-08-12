@@ -62,12 +62,16 @@ void UWidgetController::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UWidgetController::OpenUI(EGameState state)
 {
-	if (state == EGameState::Intro)
+	if (state == EGameState::Menu)
 	{
 		if (introUI && introUI->IsInViewport() == false)
 		{
 			introUI->AddToViewport();
 		}
+	}
+	else if (state == EGameState::Intro)
+	{
+		
 	}
 	else if (state == EGameState::Build)
 	{
@@ -108,7 +112,7 @@ void UWidgetController::OpenUI(EGameState state)
 }
 void UWidgetController::CloseUI(EGameState state)
 {
-	if (state == EGameState::Intro)
+	if (state == EGameState::Menu)
 	{
 		if (gameoverUI)
 		{
@@ -120,12 +124,16 @@ void UWidgetController::CloseUI(EGameState state)
 			playingUI->RemoveFromViewport();
 		}
 	}
-	else if (state == EGameState::Build)
+	else if (state == EGameState::Intro)
 	{
 		if (introUI && introUI->IsInViewport())
 		{
 			introUI->RemoveFromViewport();
 		}
+	}
+	else if (state == EGameState::Build)
+	{
+		
 	}
 	else if (state == EGameState::Tower)
 	{

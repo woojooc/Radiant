@@ -28,6 +28,7 @@ public:
 	UPROPERTY()
 	class ARadiantGameModeBase* gameModeBase;
 
+	UPROPERTY(VisibleAnywhere, Category = "GameState", BlueprintReadOnly)
 	EGameState m_state;
 
 	EGameState GetState()

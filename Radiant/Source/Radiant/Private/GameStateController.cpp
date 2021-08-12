@@ -51,13 +51,21 @@ void UGameStateController::SetState(EGameState state)
 		gameModeBase->widgetController->OpenUI(m_state);
 	}
 
-	if (m_state == EGameState::Intro)
+	if (m_state == EGameState::Menu)
+	{
+
+	}
+	else if (m_state == EGameState::Intro)
 	{
 		//pause
 		//UGameplayStatics::SetGamePaused(GetWorld(), true);
+		
+		
 	}
 	else if (m_state == EGameState::Build)
 	{
+		// 카메라 전환
+		
 		//pause
 		//UGameplayStatics::SetGamePaused(GetWorld(), true);
 

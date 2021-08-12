@@ -7,6 +7,7 @@
 #include "SetTower.h"
 #include "StageLoad.h"
 #include "ObjectPool.h"
+#include "IntroComp.h"
 
 ARadiantGameModeBase::ARadiantGameModeBase()
 {
@@ -18,6 +19,7 @@ ARadiantGameModeBase::ARadiantGameModeBase()
 	widgetController = CreateDefaultSubobject<UWidgetController>(TEXT("WidgetController"));
 	setTowerCompo = CreateDefaultSubobject<USetTower>(TEXT("SetTower"));
 	objectPool = CreateDefaultSubobject<UObjectPool>(TEXT("ObjectPool"));
+	introComp = CreateDefaultSubobject<UIntroComp>(TEXT("IntroComp"));
 }
 
 void ARadiantGameModeBase::BeginPlay()

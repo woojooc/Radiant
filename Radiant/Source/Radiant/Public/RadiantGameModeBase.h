@@ -40,6 +40,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	class UStageLoad* stageloadCompo;
 
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	class UIntroComp* introComp;
+
 	// # 加己
 
 	//		# 鸥况 积己

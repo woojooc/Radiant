@@ -29,7 +29,7 @@ void UUI_Gameover::OnQuitClicked()
 void UUI_Gameover::Retry()
 {
 	// 레벨을 재시작
-	UGameplayStatics::OpenLevel(this, TEXT("Ingame_fin"));		//GetWorld()넣어줘도 된다.
+	UGameplayStatics::OpenLevel(this, TEXT("Ingame"));		//GetWorld()넣어줘도 된다.
 }
 
 void UUI_Gameover::Quit()
