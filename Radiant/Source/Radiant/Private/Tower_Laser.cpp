@@ -173,6 +173,12 @@ void ATower_Laser::BeginPlay()
 	Super::BeginPlay();
 
 	gameModeBase = Cast<ARadiantGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	double secs = FTimespan(FDateTime::Now().GetTicks()).GetTotalSeconds();
+	int32 seed = (int32)(((int64)secs) % INT_MAX);
+	FMath::RandInit(seed);
+
+	headLoc = head->GetComponentLocation();
 }
 
 // Called every frame
@@ -185,13 +191,63 @@ void ATower_Laser::Tick(float DeltaTime)
 	{
 		curTime += DeltaTime;
 
+		RotToTarget();
+
 		// 공격 대기시간
-		if (curTime > reloadTime)
+		if (bFired == false && curTime > reloadTime)
 		{
 			Fire();
 			curTime = 0;
+			bFired = true;
 		}
+
+		if (bFired == true)
+		{
+			if (curTime < nuckbackTime)
+			{
+				// head 뒤로 이동
+				FVector myLoc = FMath::Lerp(headLoc - head->GetForwardVector() * 10 * (nuckbackTime - curTime), headLoc, 10 * DeltaTime);
+				head->SetWorldLocation(myLoc);
+			}
+			else if (curTime < nuckbackTime + relocationTime)
+			{
+				// head 원 위치
+				FVector myLoc = FMath::Lerp(headLoc, head->GetComponentLocation(), 5 * DeltaTime);
+				head->SetWorldLocation(myLoc);
+			}
+			else
+			{
+				bFired = false;
+			}
+		}
+		return;
 	}
+
+
+
+	if (setIdleRot == false)
+	{
+		TArray<int> rot = { 20, -20, 30, -30, 15, -15,50,-50,90,-90 };
+
+		int index = FMath::RandRange(0, 9);
+		//PRINTLOG(TEXT("%s %d"),*GetName(),index);
+		idleRot = GetActorRotation() + FRotator(0, rot[index], 0);
+
+		setIdleRot = true;
+		idleRotDelay = true;
+	}
+
+	if (idleRotDelay == true && setIdleRot == true)
+	{
+		curTime += DeltaTime;
+		if (curTime > idleRotDelayTime)
+		{
+			idleRotDelay = false;
+		}
+		return;
+	}
+
+	setIdleRot = IdleRotation();
 }
 
 void ATower_Laser::Fire()
@@ -217,11 +273,13 @@ void ATower_Laser::Fire()
 		}
 		else
 		{
-			dir = GetActorForwardVector();
+			dir = firePosition->GetForwardVector();
 		}
 
 		// 방향 설정
 		bullet->SetDirection(dir);
+
+		fireParticleCompo->Activate(true);
 	}
 }
 
@@ -254,4 +312,40 @@ void ATower_Laser::OnRangeOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 		target = nullptr;
 		bTargeting = false;
 	}
+}
+
+
+void ATower_Laser::RotToTarget()
+{
+	FVector dir = target->GetActorLocation() - GetActorLocation();
+
+	// 바라 보고 싶은 방향
+	FRotator targetRot = dir.ToOrientationRotator();
+	FRotator myRot = head->GetComponentRotation();
+
+	myRot = FMath::Lerp(myRot, targetRot, 5 * GetWorld()->DeltaTimeSeconds);
+	// -> 부드럽게 회전하고 싶다.
+	myRot.Pitch = 0;
+	myRot.Roll = 0;
+	head->SetWorldRotation(myRot);
+}
+
+bool ATower_Laser::IdleRotation()
+{
+	FRotator myRot = head->GetComponentRotation();
+	myRot = FMath::Lerp(myRot, idleRot, 5 * GetWorld()->DeltaTimeSeconds);
+	// -> 부드럽게 회전하고 싶다.
+	head->SetWorldRotation(myRot);
+
+	float yaw = idleRot.Euler().Z - myRot.Euler().Z;
+
+	if (yaw < 0.1 && yaw > -0.1)
+	{
+		//PRINTLOG(TEXT("%s %f"),*GetName(),yaw);
+		// 다 돌았으면 false 리턴
+
+		return false;
+	}
+
+	return true;
 }

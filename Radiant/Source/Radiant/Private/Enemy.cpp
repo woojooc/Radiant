@@ -38,8 +38,8 @@ AEnemy::AEnemy()
 
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
-	HealthWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
-	HealthWidgetComp->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+// 	HealthWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBar"));
+// 	HealthWidgetComp->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
 	//position = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AttachPosition"));
 	//position->SetupAttachment(GetCapsuleComponent());
@@ -106,17 +106,27 @@ void AEnemy::GetDamaged(int damage)
 
 void AEnemy::Slowed()
 {
-	
+	PRINTLOG(TEXT("Slowed"));
 
-// 	if (WalkSpeed <= 50)
-// 	{
-// 		return;
-// 	}
-// 	else
-// 	{
-// 		WalkSpeed -= 50;
-// 	}
-// 
+	if (moveToPoint->velocity <= 10)
+	{
+			return;
+	}
+	else
+	{
+		moveToPoint->velocity -= 30;
+	}
+/*
+	if (GetCharacterMovement()->MaxWalkSpeed <= 50)
+	{
+		return;
+	}
+	else
+	{
+		GetCharacterMovement()->MaxWalkSpeed -= 50;
+	}
+*/
+
 // 	if (enemyMove->speed <= 50)
 // 	{
 // 		return;

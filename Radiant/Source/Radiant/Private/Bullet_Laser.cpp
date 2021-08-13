@@ -42,7 +42,7 @@ void ABullet_Laser::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAc
 	if (enemy)
 	{
 
-		enemy->GetDamaged_Laser(60);
+		enemy->GetDamaged_Laser(40);
 		// ÃÑ¾Ë È¸¼ö
 		gameModeBase->objectPool->AddBullet(this);
 	}

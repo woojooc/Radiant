@@ -17,7 +17,7 @@ UObjectPool::UObjectPool()
 
 	bulletSlowPoolSize = 20;
 	bulletBaiscPoolSize = 20;
-	bulletLaserPoolSize = 20;
+	bulletLaserPoolSize = 100;
 }
 
 
