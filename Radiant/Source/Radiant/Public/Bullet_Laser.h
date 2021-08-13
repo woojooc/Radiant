@@ -40,7 +40,7 @@ public:
 
 	// # 속성
 	FVector dir;
-	float speed = 250;
+	float speed = 50;
 
 	// # 기능
 	void SetDirection(FVector d)
