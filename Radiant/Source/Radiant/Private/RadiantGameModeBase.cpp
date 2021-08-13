@@ -54,3 +54,82 @@ void ARadiantGameModeBase::SetWallSelect(bool b)
 	myController->bEnableClickEvents = b;
 	canWallSelect = b;
 }
+
+
+void ARadiantGameModeBase::AddPoint(int a)
+{
+
+	Point = Point + a;
+
+}
+int ARadiantGameModeBase::GetPoint()
+{
+	return Point;
+}
+
+void ARadiantGameModeBase::AddCoin(int b)
+{
+
+	Coin = Coin + b;
+}
+
+int ARadiantGameModeBase::GetCoin()
+{
+	return Coin;
+
+}
+
+
+void ARadiantGameModeBase::AddBlock(int c)
+{
+
+	Block = Block + c;
+}
+
+int ARadiantGameModeBase::GetBlock()
+{
+	return Block;
+
+}
+
+void ARadiantGameModeBase::AddLife(int d)
+{
+
+	Life = Life + d;
+}
+
+int ARadiantGameModeBase::GetLife()
+{
+	return Life;
+
+}
+
+void ARadiantGameModeBase::MinusLife()
+{
+	Life = Life - 1;
+}
+
+// 
+void ARadiantGameModeBase::SetEnemyTotal(int e)
+{
+	EnemyTotal = e;
+}
+
+
+int ARadiantGameModeBase::GetEnymyTotal()
+{
+	return EnemyTotal;
+}
+
+int ARadiantGameModeBase::GetEnymyLast()
+{
+	return EnemyLast;
+}
+
+void ARadiantGameModeBase::MinusEnemyLast()
+{
+
+	EnemyLast = EnemyLast - 1;
+}
+
+

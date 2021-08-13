@@ -83,4 +83,47 @@ public:
 
 	void SetWallSelect(bool b);
 
+
+public:
+
+	//      #점수 
+	int Point;
+
+	int GetPoint();
+	void AddPoint(int a);
+public:
+	//       #코인
+	int Coin;
+
+	int GetCoin();
+	void AddCoin(int b);
+
+public:
+
+	// # 블럭수 
+	int Block;
+
+	int GetBlock();
+	void AddBlock(int c);
+
+	//목숨
+	int Life;
+
+	int GetLife();
+	void AddLife(int d);
+	void MinusLife();
+
+	// 총 생성된 적의 수, 남아있는 적의 수
+	int EnemyTotal = 25;
+	int EnemyLast;
+
+	void SetEnemyTotal(int e);
+	int GetEnymyTotal();
+	int GetEnymyLast();
+
+	// 적 남은 수를 1 감소시킨다.
+	void MinusEnemyLast();
+
+
+
 };
